@@ -16,15 +16,10 @@ namespace StoreUI.Menus
                 switch (userInput)
                 {
                     case "0" :
-                        // Hero newHero = GetHeroDetails();
-                        // heroBL.AddHero(newHero);
-                        // System.Console.WriteLine($"Hero {newHero.name} was created with a superpower of {Hero.superPowers.Pop()}");
+                        System.Console.WriteLine("Menu option selected");
                         break;
                     case "1":
-                        // List<Hero> allHeroes = heroBL.GetAllHeroes();
-                        // foreach(var hero in allHeroes){
-                            // System.Console.WriteLine($"Hero {hero.name}");
-                        // }
+                        System.Console.WriteLine("Another menu option selected");
                         break;
                 }
 
