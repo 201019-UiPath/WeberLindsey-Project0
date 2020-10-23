@@ -2,7 +2,7 @@
 
 namespace StoreLib
 {
-    public class Class1
+    public class Book
     {
     }
 }
