@@ -2,9 +2,9 @@ namespace StoreLib.Models
 {
     public class Order
     {
-        int id { get; set; }
-        int userId { get; set; }
-        string[] lineItem { get; set; }
+        private int id { get; set; }
+        private int userId { get; set; }
+        private string[] lineItem { get; set; }
 
         Order() {}
 

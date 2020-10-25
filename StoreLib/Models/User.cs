@@ -2,14 +2,14 @@ namespace StoreLib
 {
     public class User
     {
-        int id { get; set; }
-        string name { get; set; }
-        string email { get; set; }
-        string username { get; set; }
-        string password { get; set; } // Not the password that youre looking for. Move along.
-        string[] orders { get; set; }
-        string[] cart { get; set; }
-        userType type { get; set; }
+        private int id { get; set; }
+        private string name { get; set; }
+        private string email { get; set; }
+        private string username { get; set; }
+        private string password { get; set; } // Not the password that youre looking for. Move along.
+        private string[] orders { get; set; }
+        private string[] cart { get; set; }
+        private userType type { get; set; }
 
         enum userType {
             Customer,
