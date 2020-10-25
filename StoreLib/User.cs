@@ -6,5 +6,7 @@ namespace StoreLib
         string name { get; set; }
         string email { get; set; }
 
+        //create enum for customer and manager types
+
     }
 }
