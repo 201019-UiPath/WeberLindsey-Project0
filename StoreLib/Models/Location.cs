@@ -2,13 +2,13 @@ namespace StoreLib
 {
     public class Location
     {
-        int id { get; set; }
-        string street1 { get; set; }
-        string street2 { get; set; }
-        string city { get; set; }
-        string state { get; set;}
-        string postalCode { get; set; }
-        string[] inventory { get; set; }
+        private int id { get; set; }
+        private string street1 { get; set; }
+        private string street2 { get; set; }
+        private string city { get; set; }
+        private string state { get; set;}
+        private string postalCode { get; set; }
+        private string[] inventory { get; set; }
 
         Location() {}
 

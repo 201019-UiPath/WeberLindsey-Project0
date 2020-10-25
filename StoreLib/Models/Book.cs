@@ -4,12 +4,12 @@ namespace StoreLib
 {
     public class Book
     {
-        int id { get; set; }
-        string title { get; set; }
-        string author { get; set; }
-        double price { get; set; }
-        string synopsis { get; set; }
-        bookType type { get; set; }
+        private int id { get; set; }
+        private string title { get; set; }
+        private string author { get; set; }
+        private double price { get; set; }
+        private string synopsis { get; set; }
+        private bookType type { get; set; }
 
         enum bookType {
             Fiction,
