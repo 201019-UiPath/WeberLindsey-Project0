@@ -6,7 +6,7 @@ namespace StoreLib
         string name { get; set; }
         string email { get; set; }
         string username { get; set; }
-        string password { get; set; }
+        string password { get; set; } // Not the password that youre looking for. Move along.
         string[] orders { get; set; }
         string[] cart { get; set; }
         userType type { get; set; }
