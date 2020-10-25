@@ -5,8 +5,13 @@ namespace StoreLib
         int id { get; set; }
         string name { get; set; }
         string email { get; set; }
+        string username { get; set; }
+        string password { get; set; }
 
-        //create enum for customer and manager types
+        enum Type {
+            Customer,
+            Manager,
+        }
 
     }
 }

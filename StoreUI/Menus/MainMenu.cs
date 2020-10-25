@@ -1,10 +1,9 @@
 using System;
-using System.Object;
 
 namespace StoreUI.Menus
 {
     /// <summary>
-    /// The welcome menu for people who come in and stuff
+    /// The main menu for users that were able to log in successfully
     /// </summary>
     public class MainMenu : IMenu
     {

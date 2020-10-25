@@ -1,4 +1,5 @@
 ﻿using System;
+using StoreUI.Menus;
 
 namespace StoreUI
 {
@@ -6,7 +7,9 @@ namespace StoreUI
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            //Calling Welcome Menu
+            IMenu startMenu = new WelcomeMenu();
+            startMenu.Start();
         }
     }
 }
