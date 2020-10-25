@@ -1,6 +1,6 @@
 namespace StoreLib
 {
-    public class Fiction : Book
+    public class Location
     {
         
     }

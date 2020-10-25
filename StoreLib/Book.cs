@@ -10,5 +10,7 @@ namespace StoreLib
         double price {get;set;}
         string synopsis {get;set;}
 
+        //create enum for fiction and non fiction types
+
     }
 }
