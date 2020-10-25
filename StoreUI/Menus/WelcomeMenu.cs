@@ -1,8 +1,10 @@
 using System;
-// using System.Windows.Forms;
 
 namespace StoreUI.Menus
 {
+    /// <summary>
+    /// Welcome menu to be displayed on application launch
+    /// </summary>
     public class WelcomeMenu : IMenu
     {
         public void Start() {
