@@ -7,6 +7,8 @@ namespace StoreLib
         string email { get; set; }
         string username { get; set; }
         string password { get; set; }
+        string[] orders { get; set; }
+        string[] cart { get; set; }
 
         enum Type {
             Customer,

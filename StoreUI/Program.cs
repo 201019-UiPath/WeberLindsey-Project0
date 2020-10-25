@@ -7,7 +7,7 @@ namespace StoreUI
     {
         static void Main(string[] args)
         {
-            //Calling Welcome Menu
+            //Calls Welcome Menu
             IMenu startMenu = new WelcomeMenu();
             startMenu.Start();
         }
