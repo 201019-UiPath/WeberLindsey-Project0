@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace StoreLib
 {
@@ -26,6 +27,12 @@ namespace StoreLib
             this.synopsis = synopsis;
             this.type = type;
         }
+
+        //Book GetBook() { } TODO
+        //List<Book> GetAllBooks() { } TODO
+        //List<Book> SearchBooks() { } TODO
+        //void AddBookToInventory() { } TODO
+        //void DeleteBookFromInventory() { } TODO
 
     }
 }

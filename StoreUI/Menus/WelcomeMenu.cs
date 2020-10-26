@@ -19,14 +19,25 @@ namespace StoreUI.Menus
                 {
                     case "0" :
                         User.SignIn();
+
+                        IMenu startMenu = new ManagerMenu();
+                        startMenu.Start();
+
+                        IMenu startMenu = new CustomerMenu();
+                        startMenu.Start();
                         break;
+
                     case "1":
                         User.SignUp();
                         break;
+
                     case "3" :
                         System.Console.WriteLine("Exit");
                         Environment.Exit(0);
                         // Application.Exit();
+                        break;
+
+                    default:
                         break;
                 }
 

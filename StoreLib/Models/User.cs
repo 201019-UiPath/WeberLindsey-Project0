@@ -75,13 +75,16 @@ namespace StoreLib
              
             //Direct to customer or manager menu depending on userType TODO relocate this to menu and instead have this method return a boolean
             switch(userType) {
-                case Manager: 
-                    IMenu startMenu = new ManagerMenu();
-                    startMenu.Start();
+
+                case Manager:
+                    Console.WriteLine("Redirect to Manager Menu");
+                    break;
 
                 case Customer:
-                    IMenu startMenu = new CustomerMenu();
-                    startMenu.Start();
+                    Console.WriteLine("Redirect to Customer Menu");
+                    break;
+                default:
+                    break;
              }}
              
         public void SignUp(string name, string email, string username, string password, Type userType) {
@@ -104,8 +107,9 @@ namespace StoreLib
             System.Console.WriteLine("User account created successfully!\n");
         }
 
-        public void CreateManager() {}
-        public void DeleteManager() {}
+        //public void CreateManager() {} TODO
+        //public void DeleteManager() {} TODO
+        //public User GetUserById() {} TODO
 
     }
 }
