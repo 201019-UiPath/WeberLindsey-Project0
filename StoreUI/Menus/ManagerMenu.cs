@@ -1,11 +1,9 @@
-using System;
-
 namespace StoreUI.Menus
 {
     /// <summary>
-    /// The main menu for users that were able to log in successfully
+    /// The main menu for managers that were able to log in successfully
     /// </summary>
-    public class MainMenu : IMenu
+    public class ManagerMenu : IMenu
     {
         public void Start() {
             string userInput;
@@ -13,7 +11,7 @@ namespace StoreUI.Menus
                 System.Console.WriteLine("Welcome to CF Books");
 
                 //Menu Options
-                System.Console.WriteLine("[0] Menu option \n[1] Another Menu Option");
+                System.Console.WriteLine("[0] View Inventory \n[1] Create Manager User");
                 userInput = System.Console.ReadLine();
                 switch (userInput)
                 {

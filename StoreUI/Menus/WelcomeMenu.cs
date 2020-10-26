@@ -18,10 +18,10 @@ namespace StoreUI.Menus
                 switch (userInput)
                 {
                     case "0" :
-                        System.Console.WriteLine("Sign In Selected");
+                        User.SignIn();
                         break;
                     case "1":
-                        System.Console.WriteLine("Sign Up Selected");
+                        User.SignUp();
                         break;
                     case "3" :
                         System.Console.WriteLine("Exit");
