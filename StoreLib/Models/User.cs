@@ -8,7 +8,7 @@ namespace StoreLib
         private string username { get; set; }
         private string password { get; set; } 
         private string[] orders { get; set; }
-        
+
         //Also when getting AllCustomers etc assign that data to Lists?
         //possibly use Bag collection for cart
         //https://docs.microsoft.com/en-us/dotnet/api/system.collections.concurrent.concurrentbag-1?view=netcore-3.1
@@ -41,6 +41,9 @@ namespace StoreLib
             this.cart = cart;
             this.type = type;
         }
+
+        public abstract void SignIn() {}
+        public abstract void SignUp() {}
 
     }
 }

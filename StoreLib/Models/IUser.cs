@@ -10,7 +10,7 @@ namespace StoreLib
         private string password;
         private Type userType;
 
-         public void SignUp() {
+         void SignUp(string name, string email, string username, string password, Type userType) {
              System.Console.WriteLine("Please provide your first and last name: ");
              name = Console.ReadLine();
 
@@ -30,7 +30,7 @@ namespace StoreLib
 
          }
 
-         public void SignIn(string username, string password) {
+         void SignIn(string username, string password) {
              System.Console.WriteLine("Enter username: ");
              username = Console.ReadLine();
 
