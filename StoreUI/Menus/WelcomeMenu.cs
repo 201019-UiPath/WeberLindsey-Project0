@@ -10,6 +10,7 @@ namespace StoreUI.Menus
         public void Start() {
             string userInput;
             do{
+
                 System.Console.WriteLine("Welcome to CF Books! Please select an option: ");
 
                 //Menu Options
@@ -18,17 +19,17 @@ namespace StoreUI.Menus
                 switch (userInput)
                 {
                     case "0" :
-                        User.SignIn();
+                        // User.SignIn();
 
-                        IMenu startMenu = new ManagerMenu();
-                        startMenu.Start();
+                        IMenu managerMenu = new ManagerMenu();
+                        managerMenu.Start();
 
-                        IMenu startMenu = new CustomerMenu();
-                        startMenu.Start();
+                        IMenu customerMenu = new CustomerMenu();
+                        customerMenu.Start();
                         break;
 
                     case "1":
-                        User.SignUp();
+                        // User.SignUp();
                         break;
 
                     case "3" :

@@ -13,7 +13,10 @@ namespace StoreUI.Menus
                 System.Console.WriteLine("Welcome to CF Books");
 
                 //Menu Options
-                System.Console.WriteLine("[0] View Products \n[1] View Order History \n[2] View Locations");
+                System.Console.WriteLine("[0] View Products");
+                System.Console.WriteLine("[1] View Order History");
+                System.Console.WriteLine("[2] Change Location");
+                System.Console.WriteLine("[3] View Cart");
                 userInput = System.Console.ReadLine();
                 switch (userInput)
                 {
