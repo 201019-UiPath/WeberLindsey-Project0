@@ -2,6 +2,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\StoreDB\StoreDB.csproj" />
+    <ProjectReference Include="..\StoreLib\StoreLib.csproj" />
   </ItemGroup>
 
   <ItemGroup>

@@ -11,7 +11,7 @@ namespace StoreUI.Menus
                 System.Console.WriteLine("Welcome to CF Books");
 
                 //Menu Options
-                System.Console.WriteLine("[0] View Inventory \n[1] Create Manager User");
+                System.Console.WriteLine("[0] Manage Inventory \n[1] Create Manager User");
                 userInput = System.Console.ReadLine();
                 switch (userInput)
                 {

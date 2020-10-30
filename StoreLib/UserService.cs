@@ -1,52 +1,43 @@
+using StoreDB.Models;
+using StoreDB.Repos;
+using System;
+
 namespace StoreLib
 {
     public class UserService
     {
+
+        private IUserRepo repo;
+
+        public UserService(IUserRepo repo) {
+            this.repo = repo;
+        }
+
+        public void AddUser(User user) {
+            repo.AddUser(user);
+        }
+
+        //  void UpdateUser(User user);
+        //  User GetUserById(int id);
+         public User GetUserByUsername(string username) {
+             User user = new User();
+
+             try {
+                 user = repo.GetUserByUsername(username);
+             }
+             catch(InvalidOperationException) {
+                 Console.WriteLine("You have entered an incorrect username or password.");
+                 Console.WriteLine("Please verify your credentials and try again, or create an account");
+             }
+
+             return user;
+         }
+        //  List<User> GetAllUsers();
+        //  void DeleteUser(User user);
         
              
-        // public void SignIn(string username, string password) {
-        //     System.Console.WriteLine("Enter username: ");
-        //     username = Console.ReadLine();
-
-        //     System.Console.WriteLine("Enter password: ");
-        //     password = Console.ReadLine();
-
-        //     //TODO Create login validation
-        //     //If validation successful, 
+        // public void SignIn(User user) {}
              
-        //     //Direct to customer or manager menu depending on userType TODO relocate this to menu and instead have this method return a boolean
-        //     switch(type) {
-
-        //         case userType.Manager:
-        //             Console.WriteLine("Redirect to Manager Menu");
-        //             break;
-
-        //         case userType.Customer:
-        //             Console.WriteLine("Redirect to Customer Menu");
-        //             break;
-        //         default:
-        //             break;
-        //      }}
-             
-        // public void SignUp(string name, string email, string username, string password, userType userType) {
-        //     System.Console.WriteLine("Please provide your first and last name: ");
-        //     name = Console.ReadLine();
-
-        //     System.Console.WriteLine("Please provide your email address: ");
-        //     email = Console.ReadLine();
-
-        //     System.Console.WriteLine("Choose a username: ");
-        //     username = Console.ReadLine();
-
-        //     System.Console.WriteLine("Create a password: ");
-        //     password = Console.ReadLine();
-
-        //     //TODO create validation for username and email addresses
-        //     //If validation passes,
-        //     User newUser = new User(name, email, username, password, userType.Customer);
-        //     System.Console.WriteLine("User account created successfully!\n");
-        // }
-
         
     }
 }

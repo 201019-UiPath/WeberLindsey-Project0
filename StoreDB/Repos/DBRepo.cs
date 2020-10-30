@@ -1,8 +1,6 @@
 using System.Collections.Generic;
-using System.Threading.Tasks;
 using StoreDB.Models;
 using System.Linq;
-using Microsoft.EntityFrameworkCore;
 using StoreDB.Repos;
 
 namespace StoreDB
@@ -87,7 +85,7 @@ namespace StoreDB
             return (User) context.Users.Where(x => x.id == id);
         }
         public User GetUserByUsername(string username) {
-            return (User) context.Users.Where(x => x.username == username);
+            return (User) context.Users.Single(x => x.username == username);
         }
         public List<User> GetAllUsers() {
             return context.Users.Select(x => x).ToList();
