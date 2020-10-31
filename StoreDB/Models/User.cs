@@ -14,10 +14,8 @@ namespace StoreDB.Models
         public string username { get; set; }
         public string password { get; set; } 
         public userType type { get; set; }
-        public int orderId { get; set; }
         public List<Order> orders { get; set; }
-        public int cartId { get; set; }
-        public List<CartItem> cartItem { get; set; }
+        public Cart cart { get; set; }
 
         public enum userType {
             Customer,

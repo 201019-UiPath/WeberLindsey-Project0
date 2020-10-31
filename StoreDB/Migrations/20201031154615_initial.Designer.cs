@@ -10,7 +10,7 @@ using StoreDB;
 namespace StoreDB.Migrations
 {
     [DbContext(typeof(StoreContext))]
-    [Migration("20201030162622_initial")]
+    [Migration("20201031154615_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -49,6 +49,24 @@ namespace StoreDB.Migrations
                     b.ToTable("Books");
                 });
 
+            modelBuilder.Entity("StoreDB.Models.Cart", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<int>("userId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("id");
+
+                    b.HasIndex("userId")
+                        .IsUnique();
+
+                    b.ToTable("Carts");
+                });
+
             modelBuilder.Entity("StoreDB.Models.CartItem", b =>
                 {
                     b.Property<int>("id")
@@ -59,14 +77,17 @@ namespace StoreDB.Migrations
                     b.Property<int>("bookId")
                         .HasColumnType("integer");
 
-                    b.Property<int>("userId")
+                    b.Property<int>("cartId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("quantity")
                         .HasColumnType("integer");
 
                     b.HasKey("id");
 
                     b.HasIndex("bookId");
 
-                    b.HasIndex("userId");
+                    b.HasIndex("cartId");
 
                     b.ToTable("CartItems");
                 });
@@ -186,9 +207,6 @@ namespace StoreDB.Migrations
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-                    b.Property<int>("cartId")
-                        .HasColumnType("integer");
-
                     b.Property<string>("email")
                         .HasColumnType("text");
 
@@ -197,9 +215,6 @@ namespace StoreDB.Migrations
 
                     b.Property<string>("name")
                         .HasColumnType("text");
-
-                    b.Property<int>("orderId")
-                        .HasColumnType("integer");
 
                     b.Property<string>("password")
                         .HasColumnType("text");
@@ -218,6 +233,15 @@ namespace StoreDB.Migrations
                     b.ToTable("Users");
                 });
 
+            modelBuilder.Entity("StoreDB.Models.Cart", b =>
+                {
+                    b.HasOne("StoreDB.Models.User", "user")
+                        .WithOne("cart")
+                        .HasForeignKey("StoreDB.Models.Cart", "userId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("StoreDB.Models.CartItem", b =>
                 {
                     b.HasOne("StoreDB.Models.Book", "book")
@@ -226,9 +250,9 @@ namespace StoreDB.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("StoreDB.Models.User", "user")
-                        .WithMany("cartItem")
-                        .HasForeignKey("userId")
+                    b.HasOne("StoreDB.Models.Cart", "cart")
+                        .WithMany("cartItems")
+                        .HasForeignKey("cartId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

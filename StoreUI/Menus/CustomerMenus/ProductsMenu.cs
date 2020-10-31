@@ -53,35 +53,35 @@ namespace StoreUI.Menus.CustomerMenus
             Console.WriteLine("[6] Back");
 
             userInput = Console.ReadLine();
-            
+
             switch(userInput) {
                 case "1":
                     selectedBook = bookService.GetBookById(1);
-                    productDetailsMenu = new ProductDetailsMenu(signedInUser, selectedBook, context, new DBRepo(context),new DBRepo(context), new DBRepo(context));
+                    productDetailsMenu = new ProductDetailsMenu(signedInUser, selectedBook, context, new DBRepo(context),new DBRepo(context), new DBRepo(context), new DBRepo(context), new DBRepo(context));
                     productDetailsMenu.Start();
                     break;
 
                 case "2":
                     selectedBook = bookService.GetBookById(2);
-                    productDetailsMenu = new ProductDetailsMenu(signedInUser, selectedBook, context, new DBRepo(context),new DBRepo(context), new DBRepo(context));
+                    productDetailsMenu = new ProductDetailsMenu(signedInUser, selectedBook, context, new DBRepo(context),new DBRepo(context), new DBRepo(context), new DBRepo(context), new DBRepo(context));
                     productDetailsMenu.Start();
                     break;
 
                 case "3":
                     selectedBook = bookService.GetBookById(3);
-                    productDetailsMenu = new ProductDetailsMenu(signedInUser, selectedBook, context, new DBRepo(context),new DBRepo(context), new DBRepo(context));
+                    productDetailsMenu = new ProductDetailsMenu(signedInUser, selectedBook, context, new DBRepo(context),new DBRepo(context), new DBRepo(context), new DBRepo(context), new DBRepo(context));
                     productDetailsMenu.Start();
                     break;
 
                 case "4":
                     selectedBook = bookService.GetBookById(4);
-                    productDetailsMenu = new ProductDetailsMenu(signedInUser, selectedBook, context, new DBRepo(context),new DBRepo(context), new DBRepo(context));
+                    productDetailsMenu = new ProductDetailsMenu(signedInUser, selectedBook, context, new DBRepo(context),new DBRepo(context), new DBRepo(context), new DBRepo(context), new DBRepo(context));
                     productDetailsMenu.Start();
                     break;
 
                 case "5":
                     selectedBook = bookService.GetBookById(5);
-                    productDetailsMenu = new ProductDetailsMenu(signedInUser, selectedBook, context, new DBRepo(context),new DBRepo(context), new DBRepo(context));
+                    productDetailsMenu = new ProductDetailsMenu(signedInUser, selectedBook, context, new DBRepo(context),new DBRepo(context), new DBRepo(context), new DBRepo(context), new DBRepo(context));
                     productDetailsMenu.Start();
                     break;
 

@@ -78,6 +78,7 @@ namespace StoreUI.Menus.CustomerMenus
 
                     case "4":
                         System.Console.WriteLine("Goodbye!");
+                        //TODO delete the user's cart and items upon leaving
                         Environment.Exit(0);
                         break;
 

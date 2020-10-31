@@ -20,16 +20,25 @@ namespace StoreUI.Menus.CustomerMenus
         private InventoryService inventoryService;
         private IBookRepo bookRepo;
         private BookService bookService;
+        private ICartRepo cartRepo;
+        private CartService cartService;
+        private ICartItemRepo cartItemRepo;
+        private CartItemService cartItemService;
 
-        public ProductDetailsMenu(User user, Book book, StoreContext context, IUserRepo userRepo, IInventoryItemRepo inventoryItemRepo, IBookRepo bookRepo) {
+        public ProductDetailsMenu(User user, Book book, StoreContext context, IUserRepo userRepo, IInventoryItemRepo inventoryItemRepo, IBookRepo bookRepo, ICartRepo cartRepo, ICartItemRepo cartItemRepo) {
             this.signedInUser = user;
             this.book = book;
             this.userRepo = userRepo;
             this.bookRepo = bookRepo;
+            this.cartRepo = cartRepo;
+            this.cartItemRepo = cartItemRepo;
+            
             this.inventoryItemRepo = inventoryItemRepo;
             this.userService = new UserService(userRepo);
             this.inventoryService = new InventoryService(inventoryItemRepo);
             this.bookService = new BookService(bookRepo);
+            this.cartService = new CartService(cartRepo);
+            this.cartItemService = new CartItemService(cartItemRepo);
         }
 
         /// <summary>
@@ -43,7 +52,7 @@ namespace StoreUI.Menus.CustomerMenus
 
                 //TODO add way to get the quantity from InventoryItemRepo Or not
                 Console.WriteLine($" [{book.id}] {book.title} | {book.author} | {book.price} | Quantity:  ");
-                Console.WriteLine($" {book.synopsis} ");
+                Console.WriteLine($" {book.synopsis} \n");
 
                 Console.WriteLine("[0] Add to cart");
                 Console.WriteLine("[1] Back");
@@ -52,7 +61,19 @@ namespace StoreUI.Menus.CustomerMenus
 
                 switch(userInput) {
                     case "0":
-                        Console.WriteLine("Add to cart selected");
+                        Console.WriteLine("How many would you like? ");
+                        int quantity = Int32.Parse(Console.ReadLine());
+
+                        Cart newCart = new Cart();
+                        newCart.userId = signedInUser.id;
+                        cartService.AddCart(newCart);
+
+                        CartItem item = new CartItem();
+                        Cart userCart = cartService.GetCartByUserId(signedInUser.id);
+                        item.cartId = userCart.id;
+                        item.bookId = book.id;
+                        item.quantity = quantity;
+                        cartItemService.AddCartItem(item);
                         break;
 
                     case "1":

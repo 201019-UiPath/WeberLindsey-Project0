@@ -80,9 +80,7 @@ namespace StoreDB.Migrations
                     email = table.Column<string>(nullable: true),
                     username = table.Column<string>(nullable: true),
                     password = table.Column<string>(nullable: true),
-                    type = table.Column<string>(nullable: false),
-                    orderId = table.Column<int>(nullable: false),
-                    cartId = table.Column<int>(nullable: false)
+                    type = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -96,25 +94,18 @@ namespace StoreDB.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "CartItems",
+                name: "Carts",
                 columns: table => new
                 {
                     id = table.Column<int>(nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    userId = table.Column<int>(nullable: false),
-                    bookId = table.Column<int>(nullable: false)
+                    userId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_CartItems", x => x.id);
+                    table.PrimaryKey("PK_Carts", x => x.id);
                     table.ForeignKey(
-                        name: "FK_CartItems_Books_bookId",
-                        column: x => x.bookId,
-                        principalTable: "Books",
-                        principalColumn: "id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_CartItems_Users_userId",
+                        name: "FK_Carts_Users_userId",
                         column: x => x.userId,
                         principalTable: "Users",
                         principalColumn: "id",
@@ -145,6 +136,33 @@ namespace StoreDB.Migrations
                         name: "FK_Orders_Users_userId",
                         column: x => x.userId,
                         principalTable: "Users",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "CartItems",
+                columns: table => new
+                {
+                    id = table.Column<int>(nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    cartId = table.Column<int>(nullable: false),
+                    bookId = table.Column<int>(nullable: false),
+                    quantity = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CartItems", x => x.id);
+                    table.ForeignKey(
+                        name: "FK_CartItems_Books_bookId",
+                        column: x => x.bookId,
+                        principalTable: "Books",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_CartItems_Carts_cartId",
+                        column: x => x.cartId,
+                        principalTable: "Carts",
                         principalColumn: "id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -183,9 +201,15 @@ namespace StoreDB.Migrations
                 column: "bookId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_CartItems_userId",
+                name: "IX_CartItems_cartId",
                 table: "CartItems",
-                column: "userId");
+                column: "cartId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Carts_userId",
+                table: "Carts",
+                column: "userId",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_InventoryItems_bookId",
@@ -233,6 +257,9 @@ namespace StoreDB.Migrations
 
             migrationBuilder.DropTable(
                 name: "LineItems");
+
+            migrationBuilder.DropTable(
+                name: "Carts");
 
             migrationBuilder.DropTable(
                 name: "Books");

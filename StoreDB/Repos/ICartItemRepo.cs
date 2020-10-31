@@ -8,8 +8,8 @@ namespace StoreDB.Repos
          void AddCartItem(CartItem cartItem);
          void UpdateCartItem(CartItem cartItem);
          CartItem GetCartItemById(int id);
-         CartItem GetCartItemByUserId(int id);
-         List<CartItem> GetAllCartItemsByUserId(int id);
+         CartItem GetCartItemByCartId(int id);
+         List<CartItem> GetAllCartItemsByCartId(int id);
          void DeleteCartItem(CartItem cartItem);
     }
 }

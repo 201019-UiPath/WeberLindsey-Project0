@@ -5,7 +5,7 @@ using StoreDB.Repos;
 
 namespace StoreDB
 {
-    public class DBRepo : IBookRepo, ILocationRepo, IUserRepo, IInventoryItemRepo, ICartItemRepo, ILineItemRepo, IOrderRepo
+    public class DBRepo : IBookRepo, ILocationRepo, IUserRepo, IInventoryItemRepo, ICartItemRepo, ICartRepo,  ILineItemRepo, IOrderRepo
     {
         private StoreContext context;
 
@@ -143,14 +143,37 @@ namespace StoreDB
         public CartItem GetCartItemById(int id) {
             return (CartItem) context.CartItems.Single(x => x.id == id);
         }
-        public CartItem GetCartItemByUserId(int id) {
-            return (CartItem) context.CartItems.Single(x => x.userId == id);
+        public CartItem GetCartItemByCartId(int id) {
+            return (CartItem) context.CartItems.Single(x => x.cartId == id);
         }
-        public List<CartItem> GetAllCartItemsByUserId(int id) {
-            return context.CartItems.Where(x => x.userId == id).ToList();
+        public List<CartItem> GetAllCartItemsByCartId(int id) {
+            return context.CartItems.Where(x => x.cartId == id).ToList();
         }
         public void DeleteCartItem(CartItem cart) {
             context.CartItems.Remove(cart);
+            context.SaveChanges();
+        }
+
+        /// <summary>
+        /// Methods to Add, Update, Get and Delete Cart data
+        /// </summary>
+        /// <param name="cart"></param>
+        public void AddCart(Cart cart) {
+            context.Carts.Add(cart);
+            context.SaveChanges();
+        }
+        public void UpdateCart(Cart cart) {
+            context.Carts.Update(cart);
+            context.SaveChanges();
+        }
+        public Cart GetCartById(int id) {
+            return (Cart) context.Carts.Single(x => x.id == id);
+        }
+        public Cart GetCartByUserId(int id) {
+            return (Cart) context.Carts.Single(x => x.userId == id);
+        }
+        public void DeleteCart(Cart cart) {
+            context.Carts.Remove(cart);
             context.SaveChanges();
         }
 

@@ -13,6 +13,7 @@ namespace StoreDB
         public DbSet<Location> Locations { get; set; }
         public DbSet<InventoryItem> InventoryItems { get; set; }
         public DbSet<CartItem> CartItems { get; set; }
+        public DbSet<Cart> Carts { get; set; }
         public DbSet<LineItem> LineItems { get; set; }
         public DbSet<Order> Orders { get; set; }
 
