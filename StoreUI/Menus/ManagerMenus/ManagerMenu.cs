@@ -1,4 +1,4 @@
-namespace StoreUI.Menus
+namespace StoreUI.Menus.ManagerMenus
 {
     /// <summary>
     /// The main menu for managers that were able to log in successfully

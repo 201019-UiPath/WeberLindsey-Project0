@@ -1,11 +1,33 @@
-namespace StoreLib.Validation
+using StoreDB.Repos;
+using StoreDB.Models;
+using System.Collections.Generic;
+
+namespace StoreLib
 {
     public class LineItemService
     {
-        // void AddLineItem(LineItem lineItem);
-        //  void UpdateLineItem(LineItem lineItem);
-        //  LineItem GetLineItemByOrderId(int id);
-        //  List<LineItem> GetAllLineItemsByOrderId(int id);
-        //  void DeleteLineItem(LineItem lineItem);
+        private ILineItemRepo repo;
+
+        public LineItemService(ILineItemRepo repo) {
+            this.repo = repo;
+        }
+
+        public void AddLineItem(LineItem lineItem) {
+            repo.AddLineItem(lineItem);
+        }
+        public void UpdateLineItem(LineItem lineItem) {
+             repo.UpdateLineItem(lineItem);
+         }
+        public LineItem GetLineItemByOrderId(int id) {
+             LineItem item = repo.GetLineItemByOrderId(id);
+             return item;
+         }
+        public List<LineItem> GetAllLineItemsByOrderId(int id) {
+             List<LineItem> items = repo.GetAllLineItemsByOrderId(id);
+             return items;
+         }
+        public void DeleteLineItem(LineItem lineItem) {
+             repo.DeleteLineItem(lineItem);
+         }
     }
 }

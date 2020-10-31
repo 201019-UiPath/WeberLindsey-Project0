@@ -10,5 +10,6 @@ namespace StoreDB.Repos
          Location GetLocationById(int id);
          Location GetLocationByState(string state);
          List<Location> GetAllLocations();
+         void DeleteLocation(Location location);
     }
 }

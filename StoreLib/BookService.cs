@@ -1,6 +1,6 @@
 using StoreDB.Repos;
-using StoreDB;
 using StoreDB.Models;
+using System.Collections.Generic;
 
 namespace StoreLib
 {
@@ -16,11 +16,33 @@ namespace StoreLib
             repo.AddBook(book);
         }
 
-        //  void UpdateBook(Book book);
-        //  Book GetBookById(int id);
-        //  Book GetBookByTitle(string title);
-        //  List<Book> GetAllBooks();
-        //  void DeleteBook(Book book);
+        public void UpdateBook(Book book) {
+             repo.UpdateBook(book);
+         }
+
+        public Book GetBookById(int id) {
+             Book book = repo.GetBookById(id);
+             return book;
+         }
+
+        public Book GetBookByTitle(string title) {
+             Book book = repo.GetBookByTitle(title);
+             return book;
+         }
+
+        public List<Book> GetAllBooks() {
+             List<Book> books = repo.GetAllBooks();
+             return books;
+         }
+
+        public List<Book> GetAllBooksAtLocationId(int id) {
+             List<Book> books = repo.GetAllBooksAtLocationId(id);
+             return books;
+         }
+
+        public void DeleteBook(Book book) {
+             repo.DeleteBook(book);
+         }
 
         
     }

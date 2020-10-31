@@ -10,10 +10,9 @@ namespace StoreLib.Validation
         }
 
         public void InvalidLoginCredentials() {
-            Console.WriteLine("You have entered an incorrect username or password.");
-            Console.WriteLine("Please verify your credentials and try again, or create an account");
+            Console.WriteLine("You have entered an incorrect username");
+            Console.WriteLine("Please verify your credentials and try again.");
         }
 
-        
     }
 }

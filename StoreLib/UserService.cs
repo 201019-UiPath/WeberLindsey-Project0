@@ -1,6 +1,6 @@
 using StoreDB.Models;
 using StoreDB.Repos;
-using System;
+using System.Collections.Generic;
 
 namespace StoreLib
 {
@@ -17,27 +17,30 @@ namespace StoreLib
             repo.AddUser(user);
         }
 
-        //  void UpdateUser(User user);
-        //  User GetUserById(int id);
-         public User GetUserByUsername(string username) {
-             User user = new User();
+        public void UpdateUser(User user) {
+             repo.UpdateUser(user);
+         }
 
-             try {
-                 user = repo.GetUserByUsername(username);
-             }
-             catch(InvalidOperationException) {
-                 Console.WriteLine("You have entered an incorrect username or password.");
-                 Console.WriteLine("Please verify your credentials and try again, or create an account");
-             }
-
+        public User GetUserById(int id) {
+             User user = GetUserById(id);
              return user;
          }
-        //  List<User> GetAllUsers();
-        //  void DeleteUser(User user);
+
+        public User GetUserByUsername(string username) {
+             User user = repo.GetUserByUsername(username);
+             return user;
+         }
+
+        public List<User> GetAllUsers() {
+             List<User> users = repo.GetAllUsers();
+             return users;
+         }
+
+        public void DeleteUser(User user) {
+             repo.DeleteUser(user);
+         }
         
-             
-        // public void SignIn(User user) {}
-             
+                          
         
     }
 }

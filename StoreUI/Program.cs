@@ -9,7 +9,7 @@ namespace StoreUI
         {            
             //Calls Welcome Menu
             StoreContext context = new StoreContext();
-            IMenu welcomeMenu = new WelcomeMenu(new DBRepo(context), new DBRepo(context));
+            IMenu welcomeMenu = new WelcomeMenu(context, new DBRepo(context), new DBRepo(context));
             welcomeMenu.Start();
         }
     }

@@ -1,13 +1,13 @@
-namespace StoreLib.Validation
+namespace StoreLib
 {
     public class CartService
     {
-        //MakePurchase();
-        // void AddCartItem(CartItem cartItem);
-        //  void UpdateCartItem(CartItem cartItem);
-        //  CartItem GetCartItemById(int id);
-        //  CartItem GetCartItemByUserId(int id);
-        //  List<CartItem> GetAllCartItemsByUserId(int id);
-        //  void DeleteCartItem(CartItem cartItem);
+        //public MakePurchase();
+        // public void AddCartItem(CartItem cartItem);
+        // public void UpdateCartItem(CartItem cartItem);
+        //  public CartItem GetCartItemById(int id);
+        //  public CartItem GetCartItemByUserId(int id);
+        // public List<CartItem> GetAllCartItemsByUserId(int id);
+        // public void DeleteCartItem(CartItem cartItem);
     }
 }

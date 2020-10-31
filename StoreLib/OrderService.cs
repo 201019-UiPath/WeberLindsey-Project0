@@ -3,18 +3,18 @@ namespace StoreLib
     public class OrderService
     {
        
-        // SortAllOrdersByDateAsc();
-        // SortAllOrdersByDateDesc();
-        // SortAllOrdersByPriceAsc();
-        // SortAllOrdersByPriceDesc();
+        // public SortAllOrdersByDateAsc();
+        //public SortAllOrdersByDateDesc();
+        //public SortAllOrdersByPriceAsc();
+        //public SortAllOrdersByPriceDesc();
 
-        // void AddOrder(Order order);
-        //  void UpdateOrder(Order order);
-        //  Order GetOrderById(int id);
-        //  Order GetOrderByUserId(int id);
-        //  Order GetOrderByLocationId(int id);
-        //  List<Order> GetAllOrdersByLocationId(int id);
-        //  List<Order> GetAllOrdersByUserId(int id);
-        //  void DeleteOrder(Order order);
+        //public void AddOrder(Order order);
+        //public  void UpdateOrder(Order order);
+        //public  Order GetOrderById(int id);
+        //public  Order GetOrderByUserId(int id);
+        //public  Order GetOrderByLocationId(int id);
+        //public  List<Order> GetAllOrdersByLocationId(int id);
+        //public  List<Order> GetAllOrdersByUserId(int id);
+        //public  void DeleteOrder(Order order);
     }
 }

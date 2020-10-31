@@ -1,8 +1,11 @@
 using System;
+using StoreDB;
 using StoreDB.Models;
 using StoreLib;
 using StoreDB.Repos;
 using System.Collections.Generic;
+using StoreUI.Menus.CustomerMenus;
+using StoreUI.Menus.ManagerMenus;
 
 namespace StoreUI.Menus
 {
@@ -12,28 +15,31 @@ namespace StoreUI.Menus
     public class WelcomeMenu : IMenu
     {
         private string userInput;
+        private User signedInUser;
+        private StoreContext context;
         private IUserRepo userRepo;
         private UserService userService;
         private ILocationRepo locationRepo;
         private LocationService locationService;
         private CustomerMenu customerMenu;
-        private ManagerMenu managerMenu;
+        // private ManagerMenu managerMenu;
 
-        public WelcomeMenu(IUserRepo userRepo, ILocationRepo locationRepo) {
+        public WelcomeMenu(StoreContext context,IUserRepo userRepo, ILocationRepo locationRepo) {
+            this.context = context;
             this.userRepo = userRepo;
             this.locationRepo = locationRepo;
             this.userService = new UserService(userRepo);
             this.locationService = new LocationService(locationRepo);
 
-            // this.customerMenu = new CustomerMenu(new DBRepo(context));
-            // this.managerMenu = new ManagerMenu(new DBRepo(context));
+            // this.customerMenu = new CustomerMenu(signedInUser, context, new DBRepo(context), new DBRepo(context),new DBRepo(context), new DBRepo(context));
+            // this.managerMenu = new ManagerMenu(signedInUser, new DBRepo(context), new DBRepo(context));
         }
 
 
         public void Start() {
 
             do{               
-                System.Console.WriteLine("Welcome to CF Books! Please select an option: ");
+                System.Console.WriteLine("\nWelcome to CF Books! Please select an option: ");
 
                 //Welcome Menu options
                 Console.WriteLine("[0] Sign In");
@@ -44,18 +50,7 @@ namespace StoreUI.Menus
                 switch (userInput)
                 {
                     case "0" :
-                        User user = GetUserDetails();
-                        Console.WriteLine($" {user.name} {user.username} ");
-                        // userService.SignIn(user);
-
-                        if(user.type == User.userType.Manager) {
-                            // managerMenu.Start();
-                            System.Console.WriteLine("Manager menu selected");
-                        }
-                        else {
-                            // customerMenu.Start();
-                            System.Console.WriteLine("Customer menu selected");
-                        }
+                        User user = SignIn();
                         break;
 
                     case "1":
@@ -79,12 +74,13 @@ namespace StoreUI.Menus
 
 
         /// <summary>
-        /// Obtain user input to sign in as existing user
+        /// Obtain user input to sign in as existing user and redirect to appropriate menu
         /// </summary>
         /// <returns></returns>
-        public User GetUserDetails() {
+        public User SignIn() {
             string username;
             string password;
+            User user = new User();
 
             Console.WriteLine("Enter username: ");
             username = Console.ReadLine();
@@ -92,12 +88,34 @@ namespace StoreUI.Menus
             Console.WriteLine("Enter password: ");
             password = Console.ReadLine();
 
-            User user = userService.GetUserByUsername(username);
+            try {
+                user = userService.GetUserByUsername(username);
+                if(user.password != password) {
+                throw new System.ArgumentException();         
+                } else {
+                    signedInUser = user;
+                    if(user.type == User.userType.Manager) {
+                    // managerMenu.Start();
+                    System.Console.WriteLine("Manager menu selected");
+                    }
+                    if(user.type == User.userType.Customer) {
+                    customerMenu = new CustomerMenu(signedInUser, context, new DBRepo(context), new DBRepo(context),new DBRepo(context), new DBRepo(context));
+                    customerMenu.Start();
+                    }
+                }
+            } catch(ArgumentException) {
+                //TODO change this to validation function
+                    Console.WriteLine("\nYou have entered an invalid username or password");
+            } catch(InvalidOperationException) {
+                //TODO change this to validation function
+                    Console.WriteLine("\nYou have entered an invalid username or password");
+            }
+
             return user;
         }
 
 
-        //TODO Add input validation to this
+        //TODO Add input validation to this for email/pw/username requirements
         /// <summary>
         /// Obtain user input to create new User account
         /// </summary>

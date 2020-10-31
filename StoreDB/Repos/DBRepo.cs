@@ -27,14 +27,16 @@ namespace StoreDB
             context.SaveChanges();
         }
         public Book GetBookById(int id) {
-            return (Book) context.Books.Where(x => x.id == id);
+            return (Book) context.Books.Single(x => x.id == id);
         }
         public Book GetBookByTitle(string title) {
-            return (Book) context.Books.Where(x => x.title == title);
+            return (Book) context.Books.Single(x => x.title == title);
         }
         public List<Book> GetAllBooks() {
-            // return context.SuperVillains.Select(x=>x).Include("SuperPowers").ToList();
             return context.Books.Select(x => x).ToList();
+        }
+        public List<Book> GetAllBooksAtLocationId(int id) {
+            return context.Books.Where(x => x.id == id).ToList();
         }
         public void DeleteBook(Book book) {
             context.Books.Remove(book);
@@ -55,10 +57,10 @@ namespace StoreDB
             context.SaveChanges();
         }
         public Location GetLocationById(int id) {
-            return (Location) context.Locations.Where(x => x.id == id);
+            return (Location) context.Locations.Single(x => x.id == id);
         }
         public Location GetLocationByState(string state) {
-            return (Location) context.Locations.Where(x => x.state == state);
+            return (Location) context.Locations.Single(x => x.state == state);
         }
         public List<Location> GetAllLocations() {
             return context.Locations.Select(x => x).ToList();
@@ -82,7 +84,7 @@ namespace StoreDB
             context.SaveChanges();
         }
         public User GetUserById(int id) {
-            return (User) context.Users.Where(x => x.id == id);
+            return (User) context.Users.Single(x => x.id == id);
         }
         public User GetUserByUsername(string username) {
             return (User) context.Users.Single(x => x.username == username);
@@ -109,13 +111,13 @@ namespace StoreDB
             context.SaveChanges();
         }
         public InventoryItem GetInventoryItemById(int id) {
-            return (InventoryItem) context.InventoryItems.Where(x => x.id == id);
+            return (InventoryItem) context.InventoryItems.Single(x => x.id == id);
         }
         public List<InventoryItem> GetAllInventoryItemsById(int id) {
             return context.InventoryItems.Where(x => x.id == id).ToList();
         }
         public InventoryItem GetInventoryItemByLocationId(int id) {
-            return (InventoryItem) context.InventoryItems.Where(x => x.locationId == id);
+            return (InventoryItem) context.InventoryItems.Single(x => x.locationId == id);
         }
         public List<InventoryItem> GetAllInventoryItemsByLocationId(int id) {
             return context.InventoryItems.Select(x => x).Where(x => x.locationId == id).ToList();
@@ -139,10 +141,10 @@ namespace StoreDB
             context.SaveChanges();
         }
         public CartItem GetCartItemById(int id) {
-            return (CartItem) context.CartItems.Where(x => x.id == id);
+            return (CartItem) context.CartItems.Single(x => x.id == id);
         }
         public CartItem GetCartItemByUserId(int id) {
-            return (CartItem) context.CartItems.Where(x => x.userId == id);
+            return (CartItem) context.CartItems.Single(x => x.userId == id);
         }
         public List<CartItem> GetAllCartItemsByUserId(int id) {
             return context.CartItems.Where(x => x.userId == id).ToList();
@@ -166,7 +168,7 @@ namespace StoreDB
             context.SaveChanges();
         }
         public LineItem GetLineItemByOrderId(int id) {
-            return (LineItem) context.LineItems.Where(x => x.orderId == id);
+            return (LineItem) context.LineItems.Single(x => x.orderId == id);
         }
         public List<LineItem> GetAllLineItemsByOrderId(int id) {
             return context.LineItems.Where(x => x.orderId == id).ToList();;
@@ -190,13 +192,13 @@ namespace StoreDB
             context.SaveChanges();
         }
         public Order GetOrderById(int id) {
-            return (Order) context.Orders.Where(x => x.id == id);
+            return (Order) context.Orders.Single(x => x.id == id);
         }
         public Order GetOrderByUserId(int id) {
-            return (Order) context.Orders.Where(x => x.userId == id);
+            return (Order) context.Orders.Single(x => x.userId == id);
         }
         public Order GetOrderByLocationId(int id) {
-            return (Order) context.Orders.Where(x => x.locationId == id);
+            return (Order) context.Orders.Single(x => x.locationId == id);
         }
         public List<Order> GetAllOrdersByLocationId(int id) {
             return context.Orders.Where(x => x.locationId == id).ToList();
