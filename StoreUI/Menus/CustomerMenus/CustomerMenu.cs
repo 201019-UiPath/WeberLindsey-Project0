@@ -23,6 +23,7 @@ namespace StoreUI.Menus.CustomerMenus
         private BookService bookService;
         private ProductsMenu productsMenu;
         private OrderHistoryMenu orderHistoryMenu;
+        private ChangeLocationMenu changeLocationMenu;
 
 
         public CustomerMenu(User user, StoreContext context, IUserRepo userRepo, ILocationRepo locationRepo, IInventoryItemRepo inventoryItemRepo, IBookRepo bookRepo) {
@@ -39,6 +40,8 @@ namespace StoreUI.Menus.CustomerMenus
             this.productsMenu = new ProductsMenu(signedInUser, context, new DBRepo(context),new DBRepo(context), new DBRepo(context));
 
             this.orderHistoryMenu = new OrderHistoryMenu(signedInUser, context, new DBRepo(context),new DBRepo(context), new DBRepo(context), new DBRepo(context), new DBRepo(context), new DBRepo(context));
+
+            this.changeLocationMenu = new ChangeLocationMenu(signedInUser, context, new DBRepo(context),new DBRepo(context));
         }
 
 
@@ -66,11 +69,10 @@ namespace StoreUI.Menus.CustomerMenus
 
                     case "1":
                         orderHistoryMenu.Start();
-                        System.Console.WriteLine("View Order History Selected");
                         break;
 
                     case "2":
-                        System.Console.WriteLine("Change Location Selected");
+                        changeLocationMenu.Start();
                         break;
 
                     case "3":
