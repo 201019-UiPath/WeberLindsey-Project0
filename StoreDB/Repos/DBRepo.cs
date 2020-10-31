@@ -234,5 +234,17 @@ namespace StoreDB
             context.SaveChanges();
         }
 
+        public List<Order> GetAllOrdersByUserIdDateAsc(int id) {
+            return context.Orders.Where(x => x.userId == id).OrderBy(x => x.orderDate).ToList();
+        }
+        public List<Order> GetAllOrdersByUserIdDateDesc(int id) {
+            return context.Orders.Where(x => x.userId == id).OrderByDescending(x => x.orderDate).ToList();
+        }
+        public List<Order> GetAllOrdersByUserIdPriceAsc(int id) {
+            return context.Orders.Where(x => x.userId == id).OrderBy(x => x.totalPrice).ToList();
+        }
+        public List<Order> GetAllOrdersByUserIdPriceDesc(int id) {
+            return context.Orders.Where(x => x.userId == id).OrderByDescending(x => x.totalPrice).ToList();
+        }
     }
 }

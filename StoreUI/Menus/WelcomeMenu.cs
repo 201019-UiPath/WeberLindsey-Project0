@@ -104,10 +104,10 @@ namespace StoreUI.Menus
                 }
             } catch(ArgumentException) {
                 //TODO change this to validation function
-                    Console.WriteLine("\nYou have entered an invalid username or password");
+                    Console.WriteLine("\nYou have entered an invalid username");
             } catch(InvalidOperationException) {
                 //TODO change this to validation function
-                    Console.WriteLine("\nYou have entered an invalid username or password");
+                    Console.WriteLine("\nYou have entered an invalid password");
             }
 
             return user;

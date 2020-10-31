@@ -3,9 +3,6 @@ using StoreDB;
 using StoreDB.Models;
 using StoreLib;
 using StoreDB.Repos;
-using System.Collections.Generic;
-using StoreUI.Menus.CustomerMenus;
-using StoreUI.Menus.ManagerMenus;
 
 namespace StoreUI.Menus.CustomerMenus
 {
@@ -25,6 +22,7 @@ namespace StoreUI.Menus.CustomerMenus
         private IBookRepo bookRepo;
         private BookService bookService;
         private ProductsMenu productsMenu;
+        private OrderHistoryMenu orderHistoryMenu;
 
 
         public CustomerMenu(User user, StoreContext context, IUserRepo userRepo, ILocationRepo locationRepo, IInventoryItemRepo inventoryItemRepo, IBookRepo bookRepo) {
@@ -39,7 +37,10 @@ namespace StoreUI.Menus.CustomerMenus
             this.bookService = new BookService(bookRepo);
 
             this.productsMenu = new ProductsMenu(signedInUser, context, new DBRepo(context),new DBRepo(context), new DBRepo(context));
+
+            this.orderHistoryMenu = new OrderHistoryMenu(signedInUser, context, new DBRepo(context),new DBRepo(context), new DBRepo(context), new DBRepo(context), new DBRepo(context), new DBRepo(context));
         }
+
 
         /// <summary>
         /// Customer Menu options to interact with products and their order histories
@@ -61,10 +62,10 @@ namespace StoreUI.Menus.CustomerMenus
                 {
                     case "0" :
                         productsMenu.Start();
-                        System.Console.WriteLine("View Products Selected");                 
                         break;
 
                     case "1":
+                        orderHistoryMenu.Start();
                         System.Console.WriteLine("View Order History Selected");
                         break;
 

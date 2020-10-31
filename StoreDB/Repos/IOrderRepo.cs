@@ -13,5 +13,10 @@ namespace StoreDB
          List<Order> GetAllOrdersByLocationId(int id);
          List<Order> GetAllOrdersByUserId(int id);
          void DeleteOrder(Order order);
+
+         List<Order> GetAllOrdersByUserIdDateAsc(int id);
+         List<Order> GetAllOrdersByUserIdDateDesc(int id);
+         List<Order> GetAllOrdersByUserIdPriceAsc(int id);
+         List<Order> GetAllOrdersByUserIdPriceDesc(int id);
     }
 }

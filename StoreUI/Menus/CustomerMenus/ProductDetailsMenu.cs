@@ -3,9 +3,6 @@ using StoreDB;
 using StoreDB.Models;
 using StoreLib;
 using StoreDB.Repos;
-using System.Collections.Generic;
-using StoreUI.Menus.CustomerMenus;
-using StoreUI.Menus.ManagerMenus;
 
 namespace StoreUI.Menus.CustomerMenus
 {
