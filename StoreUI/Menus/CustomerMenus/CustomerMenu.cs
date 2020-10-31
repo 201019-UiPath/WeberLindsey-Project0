@@ -41,6 +41,9 @@ namespace StoreUI.Menus.CustomerMenus
             this.productsMenu = new ProductsMenu(signedInUser, context, new DBRepo(context),new DBRepo(context), new DBRepo(context));
         }
 
+        /// <summary>
+        /// Customer Menu options to interact with products and their order histories
+        /// </summary>
         public void Start() {
 
             do{

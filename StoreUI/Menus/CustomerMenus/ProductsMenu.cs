@@ -33,6 +33,11 @@ namespace StoreUI.Menus.CustomerMenus
             this.inventoryService = new InventoryService(inventoryItemRepo);
             this.bookService = new BookService(bookRepo);
         }
+
+        /// <summary>
+        /// Menu that displays all products at the customer's current preferred location
+        /// and options navigate to more detailed view of products for purchase
+        /// </summary>
         public void Start() {
 
             do {
@@ -48,27 +53,36 @@ namespace StoreUI.Menus.CustomerMenus
             Console.WriteLine("[6] Back");
 
             userInput = Console.ReadLine();
+            
             switch(userInput) {
                 case "1":
-
                     selectedBook = bookService.GetBookById(1);
+                    productDetailsMenu = new ProductDetailsMenu(signedInUser, selectedBook, context, new DBRepo(context),new DBRepo(context), new DBRepo(context));
                     productDetailsMenu.Start();
                     break;
 
                 case "2":
-                    // selectedBook = bookService.GetBookById(2);
+                    selectedBook = bookService.GetBookById(2);
+                    productDetailsMenu = new ProductDetailsMenu(signedInUser, selectedBook, context, new DBRepo(context),new DBRepo(context), new DBRepo(context));
+                    productDetailsMenu.Start();
                     break;
 
                 case "3":
-                    // selectedBook = bookService.GetBookById(3);
+                    selectedBook = bookService.GetBookById(3);
+                    productDetailsMenu = new ProductDetailsMenu(signedInUser, selectedBook, context, new DBRepo(context),new DBRepo(context), new DBRepo(context));
+                    productDetailsMenu.Start();
                     break;
 
                 case "4":
-                    // selectedBook = bookService.GetBookById(4);
+                    selectedBook = bookService.GetBookById(4);
+                    productDetailsMenu = new ProductDetailsMenu(signedInUser, selectedBook, context, new DBRepo(context),new DBRepo(context), new DBRepo(context));
+                    productDetailsMenu.Start();
                     break;
 
                 case "5":
-                    // selectedBook = bookService.GetBookById(5);
+                    selectedBook = bookService.GetBookById(5);
+                    productDetailsMenu = new ProductDetailsMenu(signedInUser, selectedBook, context, new DBRepo(context),new DBRepo(context), new DBRepo(context));
+                    productDetailsMenu.Start();
                     break;
 
                 case "6":
@@ -79,19 +93,18 @@ namespace StoreUI.Menus.CustomerMenus
                     Console.WriteLine("Invalid product selected");
                     break;
                 }
-
-            this.productDetailsMenu = new ProductDetailsMenu(signedInUser, selectedBook, context, new DBRepo(context),new DBRepo(context), new DBRepo(context));
+            
             } while(!userInput.Equals("6"));
 
-
-
         }
-        
+
+            
 
 
-
-
-
+        /// <summary>
+        /// Gets a list of all products at the customer's current preferred location
+        /// </summary>
+        /// <returns></returns>
         public List<InventoryItem> GetProductsForUserLocation() {
             List<InventoryItem> items;
             int locationId = signedInUser.locationId;

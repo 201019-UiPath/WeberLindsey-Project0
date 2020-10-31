@@ -31,7 +31,6 @@ namespace StoreUI.Menus
             this.userService = new UserService(userRepo);
             this.locationService = new LocationService(locationRepo);
 
-            // this.customerMenu = new CustomerMenu(signedInUser, context, new DBRepo(context), new DBRepo(context),new DBRepo(context), new DBRepo(context));
             // this.managerMenu = new ManagerMenu(signedInUser, new DBRepo(context), new DBRepo(context));
         }
 

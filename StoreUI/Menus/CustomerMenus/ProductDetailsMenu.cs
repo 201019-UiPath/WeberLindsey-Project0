@@ -32,30 +32,38 @@ namespace StoreUI.Menus.CustomerMenus
             this.bookService = new BookService(bookRepo);
         }
 
+        /// <summary>
+        /// Menu for customer to view detailed information of product 
+        /// and add it to their cart for purchase or return to the previous menu
+        /// </summary>
         public void Start() {
-            Console.WriteLine("\nWhat would you like to do? ");
 
-            //TODO add way to get the quantity from InventoryItemRepo
-            Console.WriteLine($" [{book.id}] {book.title} | {book.author} | {book.price} | Quantity:  ");
-            Console.WriteLine($" {book.synopsis} ");
+            do {
+                Console.WriteLine("\nWhat would you like to do? ");
 
-            Console.WriteLine("[0] Add to cart");
-            Console.WriteLine("[1] Back");
+                //TODO add way to get the quantity from InventoryItemRepo Or not
+                Console.WriteLine($" [{book.id}] {book.title} | {book.author} | {book.price} | Quantity:  ");
+                Console.WriteLine($" {book.synopsis} ");
 
-            switch(userInput) {
-                case "0":
-                    Console.WriteLine("Add to cart selected");
-                    break;
+                Console.WriteLine("[0] Add to cart");
+                Console.WriteLine("[1] Back");
 
-                case "1":
-                    break;
+                userInput = Console.ReadLine();
 
-                default:
-                    //TODO create input validation for this InvalidInputMessage()
-                    Console.WriteLine("Invalid Selection");
-                    break;
-            }
+                switch(userInput) {
+                    case "0":
+                        Console.WriteLine("Add to cart selected");
+                        break;
 
+                    case "1":
+                        break;
+
+                    default:
+                        //TODO create input validation for this InvalidInputMessage()
+                        Console.WriteLine("Invalid Selection");
+                        break;
+                }
+            } while(!userInput.Equals("1"));
 
 
         }
