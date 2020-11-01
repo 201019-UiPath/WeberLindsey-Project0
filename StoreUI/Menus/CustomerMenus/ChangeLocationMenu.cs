@@ -7,7 +7,7 @@ using System.Collections.Generic;
 
 namespace StoreUI.Menus.CustomerMenus
 {
-    public class ChangeLocationMenu
+    public class ChangeLocationMenu : IMenu
     {
         private string userInput;
         private User signedInUser;

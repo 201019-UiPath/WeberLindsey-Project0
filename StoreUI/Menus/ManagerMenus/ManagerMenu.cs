@@ -12,13 +12,13 @@ namespace StoreUI.Menus.ManagerMenus
     /// </summary>
     public class ManagerMenu : IMenu
     {
-
         private string userInput;
         private User signedInUser;
         private IUserRepo userRepo;
         private UserService userService;
         private ILocationRepo locationRepo;
         private LocationService locationService;
+        private EditInvMenu editInvMenu;
 
 
         public ManagerMenu(User user, StoreContext context, IUserRepo userRepo, ILocationRepo locationRepo) {
@@ -28,7 +28,7 @@ namespace StoreUI.Menus.ManagerMenus
             this.userService = new UserService(userRepo);
             this.locationService = new LocationService(locationRepo);
 
-            // this.productsMenu = new ProductsMenu(signedInUser, context, new DBRepo(context),new DBRepo(context), new DBRepo(context));
+            this.editInvMenu = new EditInvMenu(signedInUser, context, new DBRepo(context), new DBRepo(context), new DBRepo(context));
         }
 
 
@@ -46,7 +46,7 @@ namespace StoreUI.Menus.ManagerMenus
                 switch (userInput)
                 {
                     case "1" :
-                        System.Console.WriteLine("Manage Inventory Selected");
+                        editInvMenu.Start();
                         break;
                     case "2":
                         User newUser = GetNewManagerDetails();
@@ -63,8 +63,8 @@ namespace StoreUI.Menus.ManagerMenus
                 }
 
             } while(!userInput.Equals("3"));
-        }
 
+        }
 
 
         //TODO Add input validation to this for email/pw/username requirements
@@ -94,7 +94,7 @@ namespace StoreUI.Menus.ManagerMenus
             do {
                 List<Location> locs = locationService.GetAllLocations();
                 foreach(Location loc in locs) {
-                    Console.WriteLine($" {loc.id} {loc.city} {loc.state}");
+                    Console.WriteLine($" [{loc.id}] {loc.city} {loc.state}");
                 }
 
                 selectedLocation = Console.ReadLine();
@@ -124,9 +124,6 @@ namespace StoreUI.Menus.ManagerMenus
             Console.WriteLine("User account created!");
             return user;
         }
-
-
-
 
     }
 }

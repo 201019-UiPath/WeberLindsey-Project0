@@ -159,7 +159,7 @@ namespace StoreUI.Menus
             do {
                 List<Location> locs = locationService.GetAllLocations();
                 foreach(Location loc in locs) {
-                    Console.WriteLine($" {loc.id} {loc.city} {loc.state}");
+                    Console.WriteLine($" [{loc.id}] {loc.city} {loc.state}");
                 }
                 selectedLocation = Console.ReadLine();
 

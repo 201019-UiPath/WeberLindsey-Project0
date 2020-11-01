@@ -7,7 +7,7 @@ using System.Collections.Generic;
 
 namespace StoreUI.Menus.CustomerMenus
 {
-    public class EditCartMenu
+    public class EditCartMenu : IMenu
     {
         private string userInput;
         private User signedInUser;
@@ -93,7 +93,7 @@ namespace StoreUI.Menus.CustomerMenus
                 List<CartItem> items = cartItemService.GetAllCartItemsByCartId(cart.id);
                 int i = 0;
                 foreach(CartItem item in items) {
-                    i++;
+                    i++; //TODO test this
                     Book book = bookService.GetBookById(item.bookId);
                     Console.WriteLine($" [{i}] {book.title} | {book.author} | {book.price} | {item.quantity} ");
                 }
