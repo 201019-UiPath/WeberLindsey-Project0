@@ -61,9 +61,12 @@ namespace StoreUI.Menus.CustomerMenus
                         Console.WriteLine("How many would you like? ");
                         int quantity = Int32.Parse(Console.ReadLine());
 
-                        Cart newCart = new Cart();
-                        newCart.userId = signedInUser.id;
-                        cartService.AddCart(newCart);
+                        //TODO remove this, only for testing cart functionality, deleting cart
+                        // cartService.DeleteCart(cartService.GetCartByUserId(signedInUser.id));
+
+                        // Cart newCart = new Cart();
+                        // newCart.userId = signedInUser.id;
+                        // cartService.AddCart(newCart);
 
                         CartItem item = new CartItem();
                         Cart userCart = cartService.GetCartByUserId(signedInUser.id);
@@ -71,6 +74,7 @@ namespace StoreUI.Menus.CustomerMenus
                         item.bookId = book.id;
                         item.quantity = quantity;
                         cartItemService.AddCartItem(item);
+                        Console.WriteLine("Added to cart!");
                         break;
 
                     case "1":

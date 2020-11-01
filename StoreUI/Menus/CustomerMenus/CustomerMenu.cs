@@ -24,6 +24,7 @@ namespace StoreUI.Menus.CustomerMenus
         private ProductsMenu productsMenu;
         private OrderHistoryMenu orderHistoryMenu;
         private ChangeLocationMenu changeLocationMenu;
+        private CartMenu cartMenu;
 
 
         public CustomerMenu(User user, StoreContext context, IUserRepo userRepo, ILocationRepo locationRepo, IInventoryItemRepo inventoryItemRepo, IBookRepo bookRepo) {
@@ -42,6 +43,8 @@ namespace StoreUI.Menus.CustomerMenus
             this.orderHistoryMenu = new OrderHistoryMenu(signedInUser, context, new DBRepo(context),new DBRepo(context), new DBRepo(context), new DBRepo(context), new DBRepo(context), new DBRepo(context));
 
             this.changeLocationMenu = new ChangeLocationMenu(signedInUser, context, new DBRepo(context),new DBRepo(context));
+
+            this.cartMenu = new CartMenu(signedInUser, context, new DBRepo(context),new DBRepo(context), new DBRepo(context), new DBRepo(context), new DBRepo(context), new DBRepo(context), new DBRepo(context), new DBRepo(context));
         }
 
 
@@ -77,6 +80,7 @@ namespace StoreUI.Menus.CustomerMenus
 
                     case "3":
                         System.Console.WriteLine("View Cart Selected");
+                        cartMenu.Start();
                         break;
 
                     case "4":

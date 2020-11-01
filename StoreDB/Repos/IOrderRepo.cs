@@ -1,4 +1,5 @@
 using StoreDB.Models;
+using System;
 using System.Collections.Generic;
 
 namespace StoreDB
@@ -18,5 +19,7 @@ namespace StoreDB
          List<Order> GetAllOrdersByUserIdDateDesc(int id);
          List<Order> GetAllOrdersByUserIdPriceAsc(int id);
          List<Order> GetAllOrdersByUserIdPriceDesc(int id);
+         
+         Order GetOrderByDate(DateTime dateTime);
     }
 }

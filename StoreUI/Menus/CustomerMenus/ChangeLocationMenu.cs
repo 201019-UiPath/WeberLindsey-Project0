@@ -76,6 +76,7 @@ namespace StoreUI.Menus.CustomerMenus
             userService.UpdateUser(signedInUser);
 
             Console.WriteLine("Location updated!\n");
+            //TODO empty user's cart items as inventory has changed
         }
 
     }

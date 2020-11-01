@@ -21,15 +21,20 @@ namespace StoreUI.Menus
         private UserService userService;
         private ILocationRepo locationRepo;
         private LocationService locationService;
+        private ICartRepo cartRepo;
+        private CartService cartService;
         private CustomerMenu customerMenu;
         // private ManagerMenu managerMenu;
 
-        public WelcomeMenu(StoreContext context,IUserRepo userRepo, ILocationRepo locationRepo) {
+        public WelcomeMenu(StoreContext context,IUserRepo userRepo, ILocationRepo locationRepo, ICartRepo cartRepo) {
             this.context = context;
             this.userRepo = userRepo;
             this.locationRepo = locationRepo;
+            this.cartRepo = cartRepo;
+
             this.userService = new UserService(userRepo);
             this.locationService = new LocationService(locationRepo);
+            this.cartService = new CartService(cartRepo);
 
             // this.managerMenu = new ManagerMenu(signedInUser, new DBRepo(context), new DBRepo(context));
         }
@@ -99,6 +104,15 @@ namespace StoreUI.Menus
                     }
                     if(user.type == User.userType.Customer) {
                     customerMenu = new CustomerMenu(signedInUser, context, new DBRepo(context), new DBRepo(context),new DBRepo(context), new DBRepo(context));
+
+                    //Deletes any existing cart
+                    cartService.DeleteCart(cartService.GetCartByUserId(signedInUser.id));
+
+                    //Creates new cart for customer user
+                    Cart newCart = new Cart();
+                    newCart.userId = signedInUser.id;
+                    cartService.AddCart(newCart);
+
                     customerMenu.Start();
                     }
                 }
@@ -106,7 +120,7 @@ namespace StoreUI.Menus
                 //TODO change this to validation function
                     Console.WriteLine("\nYou have entered an invalid username");
             } catch(InvalidOperationException) {
-                //TODO change this to validation function
+                //TODO change this to validation function and create custom exception
                     Console.WriteLine("\nYou have entered an invalid password");
             }
 

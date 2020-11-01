@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using StoreDB.Models;
 using System.Linq;
 using StoreDB.Repos;
+using System;
 
 namespace StoreDB
 {
@@ -245,6 +246,10 @@ namespace StoreDB
         }
         public List<Order> GetAllOrdersByUserIdPriceDesc(int id) {
             return context.Orders.Where(x => x.userId == id).OrderByDescending(x => x.totalPrice).ToList();
+        }
+
+        public Order GetOrderByDate(DateTime dateTime) {
+            return (Order) context.Orders.Single(x => x.orderDate == dateTime);
         }
     }
 }

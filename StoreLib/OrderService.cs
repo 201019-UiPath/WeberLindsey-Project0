@@ -1,6 +1,7 @@
 using StoreDB.Models;
 using StoreDB;
 using System.Collections.Generic;
+using System;
 
 namespace StoreLib
 {
@@ -57,6 +58,11 @@ namespace StoreLib
         public List<Order> GetAllOrdersByUserIdPriceDesc(int id) {
             List<Order> orders = repo.GetAllOrdersByUserIdPriceDesc(id);
             return orders;
+        }
+
+        public Order GetOrderByDate(DateTime dateTime) {
+            Order order = repo.GetOrderByDate(dateTime);
+            return order;
         }
     }
 }
