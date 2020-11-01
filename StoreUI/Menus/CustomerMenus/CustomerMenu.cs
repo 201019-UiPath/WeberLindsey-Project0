@@ -1,8 +1,6 @@
 using System;
 using StoreDB;
 using StoreDB.Models;
-using StoreLib;
-using StoreDB.Repos;
 
 namespace StoreUI.Menus.CustomerMenus
 {
@@ -13,30 +11,14 @@ namespace StoreUI.Menus.CustomerMenus
     {
         private string userInput;
         private User signedInUser;
-        private IUserRepo userRepo;
-        private UserService userService;
-        private ILocationRepo locationRepo;
-        private LocationService locationService;
-        private IInventoryItemRepo inventoryItemRepo;
-        private InventoryService inventoryService;
-        private IBookRepo bookRepo;
-        private BookService bookService;
         private ProductsMenu productsMenu;
         private OrderHistoryMenu orderHistoryMenu;
         private ChangeLocationMenu changeLocationMenu;
         private CartMenu cartMenu;
 
 
-        public CustomerMenu(User user, StoreContext context, IUserRepo userRepo, ILocationRepo locationRepo, IInventoryItemRepo inventoryItemRepo, IBookRepo bookRepo) {
+        public CustomerMenu(User user, StoreContext context) {
             this.signedInUser = user;
-            this.userRepo = userRepo;
-            this.locationRepo = locationRepo;
-            this.bookRepo = bookRepo;
-            this.inventoryItemRepo = inventoryItemRepo;
-            this.userService = new UserService(userRepo);
-            this.locationService = new LocationService(locationRepo);
-            this.inventoryService = new InventoryService(inventoryItemRepo);
-            this.bookService = new BookService(bookRepo);
 
             this.productsMenu = new ProductsMenu(signedInUser, context, new DBRepo(context),new DBRepo(context), new DBRepo(context));
 
@@ -79,13 +61,11 @@ namespace StoreUI.Menus.CustomerMenus
                         break;
 
                     case "4":
-                        System.Console.WriteLine("View Cart Selected");
                         cartMenu.Start();
                         break;
 
                     case "5":
                         System.Console.WriteLine("Goodbye!");
-                        //TODO delete the user's cart and items upon leaving
                         Environment.Exit(0);
                         break;
 
@@ -96,8 +76,9 @@ namespace StoreUI.Menus.CustomerMenus
                 }
 
             } while(!userInput.Equals("5"));
+
         }
 
-
     }
+
 }

@@ -24,7 +24,7 @@ namespace StoreUI.Menus
         private ICartRepo cartRepo;
         private CartService cartService;
         private CustomerMenu customerMenu;
-        // private ManagerMenu managerMenu;
+        private ManagerMenu managerMenu;
 
         public WelcomeMenu(StoreContext context,IUserRepo userRepo, ILocationRepo locationRepo, ICartRepo cartRepo) {
             this.context = context;
@@ -35,8 +35,6 @@ namespace StoreUI.Menus
             this.userService = new UserService(userRepo);
             this.locationService = new LocationService(locationRepo);
             this.cartService = new CartService(cartRepo);
-
-            // this.managerMenu = new ManagerMenu(signedInUser, new DBRepo(context), new DBRepo(context));
         }
 
 
@@ -86,7 +84,7 @@ namespace StoreUI.Menus
             string password;
             User user = new User();
 
-            Console.WriteLine("Enter username: ");
+            Console.WriteLine("\nEnter username: ");
             username = Console.ReadLine();
 
             Console.WriteLine("Enter password: ");
@@ -99,29 +97,35 @@ namespace StoreUI.Menus
                 } else {
                     signedInUser = user;
                     if(user.type == User.userType.Manager) {
-                    // managerMenu.Start();
-                    System.Console.WriteLine("Manager menu selected");
+                        managerMenu = new ManagerMenu(signedInUser, context, new DBRepo(context), new DBRepo(context));
+                        managerMenu.Start();
                     }
+
                     if(user.type == User.userType.Customer) {
-                    customerMenu = new CustomerMenu(signedInUser, context, new DBRepo(context), new DBRepo(context),new DBRepo(context), new DBRepo(context));
+                        customerMenu = new CustomerMenu(signedInUser, context);
 
-                    //Deletes any existing cart
-                    cartService.DeleteCart(cartService.GetCartByUserId(signedInUser.id));
+                        //Deletes existing cart
+                        try{
+                            cartService.DeleteCart(cartService.GetCartByUserId(signedInUser.id));
+                        } catch(InvalidOperationException) {} 
+                        finally {
+                            //Creates new cart for customer user
+                            Cart newCart = new Cart();
+                            newCart.userId = signedInUser.id;
+                            cartService.AddCart(newCart);
 
-                    //Creates new cart for customer user
-                    Cart newCart = new Cart();
-                    newCart.userId = signedInUser.id;
-                    cartService.AddCart(newCart);
+                            customerMenu.Start();
+                        }
 
-                    customerMenu.Start();
+                        
                     }
                 }
             } catch(ArgumentException) {
                 //TODO change this to validation function
-                    Console.WriteLine("\nYou have entered an invalid username");
+                    Console.WriteLine("\nYou have entered an invalid password");
             } catch(InvalidOperationException) {
                 //TODO change this to validation function and create custom exception
-                    Console.WriteLine("\nYou have entered an invalid password");
+                    Console.WriteLine("\nYou have entered an invalid username");
             }
 
             return user;
@@ -138,7 +142,7 @@ namespace StoreUI.Menus
             user.type = User.userType.Customer;
             string selectedLocation;
 
-            Console.WriteLine("Enter name: ");
+            Console.WriteLine("\nEnter name: ");
             user.name = Console.ReadLine();
 
             Console.WriteLine("Enter email: ");
@@ -182,6 +186,7 @@ namespace StoreUI.Menus
                 } 
             } while (invalidSelection);
 
+            Console.WriteLine("Account created!");
             return user;
         }
 
