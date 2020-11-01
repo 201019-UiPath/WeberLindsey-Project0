@@ -50,31 +50,31 @@ namespace StoreUI.Menus.CustomerMenus
 
                 Console.WriteLine("How would you like to view your previous orders? ");
 
-                Console.WriteLine("[0] Sort By Date Asc");
-                Console.WriteLine("[1] Sort By Date Desc");
-                Console.WriteLine("[2] Sort By Price Asc");
-                Console.WriteLine("[3] Sort By Price Desc");
-                Console.WriteLine("[4] Back");
+                Console.WriteLine("[1] Sort By Date Asc");
+                Console.WriteLine("[2] Sort By Date Desc");
+                Console.WriteLine("[3] Sort By Price Asc");
+                Console.WriteLine("[4] Sort By Price Desc");
+                Console.WriteLine("[5] Back");
 
                 userInput = Console.ReadLine();
                 switch(userInput) {
-                    case "0":
+                    case "1":
                         GetOrdersSortedByDateAsc();
                         break;
 
-                    case "1":
+                    case "2":
                         GetOrdersSortedByDateDesc();
                         break;
 
-                    case "2":
+                    case "3":
                         GetOrdersSortedByPriceAsc();
                         break;
 
-                    case "3":
+                    case "4":
                         GetOrdersSortedByPriceDesc(); 
                         break;
 
-                    case "4":
+                    case "5":
                         break;
 
                     default:
@@ -83,7 +83,7 @@ namespace StoreUI.Menus.CustomerMenus
                         break;
                 }
 
-            } while(!userInput.Equals("4"));
+            } while(!userInput.Equals("5"));
 
         }
 

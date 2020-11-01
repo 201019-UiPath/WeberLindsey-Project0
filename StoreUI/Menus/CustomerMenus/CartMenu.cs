@@ -53,7 +53,7 @@ namespace StoreUI.Menus.CustomerMenus
             this.orderService = new OrderService(orderRepo);
             this.lineItemService = new LineItemService(lineItemRepo);
 
-            this.editCartMenu = new EditCartMenu(signedInUser, context, new DBRepo(context), new DBRepo(context), new DBRepo(context), new DBRepo(context));
+            this.editCartMenu = new EditCartMenu(signedInUser, context, new DBRepo(context), new DBRepo(context), new DBRepo(context), new DBRepo(context), new DBRepo(context), new DBRepo(context));
 
         }
 
@@ -79,23 +79,22 @@ namespace StoreUI.Menus.CustomerMenus
 
                 //Cart menu options
                 Console.WriteLine("\nWhat would you like to do?");
-                Console.WriteLine("[0] Purchase items in cart");
-                Console.WriteLine("[1] Edit cart"); 
-                Console.WriteLine("[2] Back");
+                Console.WriteLine("[1] Purchase items in cart");
+                Console.WriteLine("[2] Edit cart"); 
+                Console.WriteLine("[3] Back");
 
                 userInput = Console.ReadLine();
 
                 switch(userInput) {
-                    case "0":
-                        Console.WriteLine("Check out selected");
+                    case "1":
                         CheckOut();
                         break;
 
-                    case "1":
-                        Console.WriteLine("Edit cart selected");
+                    case "2":
+                        editCartMenu.Start();
                         break;
 
-                    case "2":
+                    case "3":
                         break;
 
                     default:
@@ -104,7 +103,7 @@ namespace StoreUI.Menus.CustomerMenus
                         break;
                 }
                         
-            } while(!userInput.Equals("2"));
+            } while(!userInput.Equals("3"));
 
         } 
 

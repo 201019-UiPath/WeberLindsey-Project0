@@ -57,33 +57,33 @@ namespace StoreUI.Menus.CustomerMenus
                 Console.WriteLine("\nWelcome to CF Books! What would you like to do today?");
 
                 //Customer Menu Options
-                System.Console.WriteLine("[0] View Products");
-                System.Console.WriteLine("[1] View Order History");
-                System.Console.WriteLine("[2] Change Location");
-                System.Console.WriteLine("[3] View Cart");
-                System.Console.WriteLine("[4] Exit");
+                System.Console.WriteLine("[1] View Products");
+                System.Console.WriteLine("[2] View Order History");
+                System.Console.WriteLine("[3] Change Location");
+                System.Console.WriteLine("[4] View Cart");
+                System.Console.WriteLine("[5] Exit");
                 userInput = System.Console.ReadLine();
 
                 switch (userInput)
                 {
-                    case "0" :
+                    case "1" :
                         productsMenu.Start();
                         break;
 
-                    case "1":
+                    case "2":
                         orderHistoryMenu.Start();
                         break;
 
-                    case "2":
+                    case "3":
                         changeLocationMenu.Start();
                         break;
 
-                    case "3":
+                    case "4":
                         System.Console.WriteLine("View Cart Selected");
                         cartMenu.Start();
                         break;
 
-                    case "4":
+                    case "5":
                         System.Console.WriteLine("Goodbye!");
                         //TODO delete the user's cart and items upon leaving
                         Environment.Exit(0);
@@ -95,7 +95,7 @@ namespace StoreUI.Menus.CustomerMenus
                         break;
                 }
 
-            } while(!userInput.Equals("4"));
+            } while(!userInput.Equals("5"));
         }
 
 

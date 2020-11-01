@@ -8,7 +8,7 @@ namespace StoreUI.Menus.ManagerMenus
         public void Start() {
             string userInput;
             do{
-                System.Console.WriteLine("Welcome to CF Books");
+                System.Console.WriteLine("\nWelcome to CF Books! What would you like to do today?");
 
                 //Menu Options
                 System.Console.WriteLine("[0] Manage Inventory \n[1] Create Manager User");
@@ -16,7 +16,7 @@ namespace StoreUI.Menus.ManagerMenus
                 switch (userInput)
                 {
                     case "0" :
-                        System.Console.WriteLine("Menu option selected");
+                        System.Console.WriteLine("Manage Inventory Selected");
                         break;
                     case "1":
                         System.Console.WriteLine("Another menu option selected");
@@ -25,5 +25,11 @@ namespace StoreUI.Menus.ManagerMenus
 
             } while(!userInput.Equals("0") || !userInput.Equals("1"));
         }
+
+
+
+
+
+
     }
 }

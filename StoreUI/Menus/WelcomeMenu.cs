@@ -46,18 +46,18 @@ namespace StoreUI.Menus
                 System.Console.WriteLine("\nWelcome to CF Books! Please select an option: ");
 
                 //Welcome Menu options
-                Console.WriteLine("[0] Sign In");
-                Console.WriteLine("[1] Sign Up");
+                Console.WriteLine("[1] Sign In");
+                Console.WriteLine("[2] Sign Up");
                 Console.WriteLine("[3] Exit");
                 userInput = Console.ReadLine();
 
                 switch (userInput)
                 {
-                    case "0" :
+                    case "1" :
                         User user = SignIn();
                         break;
 
-                    case "1":
+                    case "2":
                         User newUser = GetNewUserDetails();
                         userService.AddUser(newUser);
                         break;

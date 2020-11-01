@@ -51,13 +51,13 @@ namespace StoreUI.Menus.CustomerMenus
                 Console.WriteLine($" [{book.id}] {book.title} | {book.author} | {book.price} | Quantity:  ");
                 Console.WriteLine($" {book.synopsis} \n");
 
-                Console.WriteLine("[0] Add to cart");
-                Console.WriteLine("[1] Back");
+                Console.WriteLine("[1] Add to cart");
+                Console.WriteLine("[2] Back");
 
                 userInput = Console.ReadLine();
 
                 switch(userInput) {
-                    case "0":
+                    case "1":
                         Console.WriteLine("How many would you like? ");
                         int quantity = Int32.Parse(Console.ReadLine());
 
@@ -77,7 +77,7 @@ namespace StoreUI.Menus.CustomerMenus
                         Console.WriteLine("Added to cart!");
                         break;
 
-                    case "1":
+                    case "2":
                         break;
 
                     default:
@@ -85,7 +85,7 @@ namespace StoreUI.Menus.CustomerMenus
                         Console.WriteLine("Invalid Selection");
                         break;
                 }
-            } while(!userInput.Equals("1"));
+            } while(!userInput.Equals("2"));
 
 
         }
