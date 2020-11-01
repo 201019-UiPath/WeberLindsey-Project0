@@ -11,6 +11,8 @@ namespace StoreUI.Menus.ManagerMenus
     {
         private string userInput;
         private Book selectedBook;
+        private int selectedLocationId;
+        private InventoryItem selectedItem;
         private User signedInUser;
         private StoreContext context;
         private ILocationRepo locationRepo;
@@ -19,7 +21,7 @@ namespace StoreUI.Menus.ManagerMenus
         private InventoryService inventoryService;
         private IBookRepo bookRepo;
         private BookService bookService;
-        private EditInvDetailsMenu editInvDetailsMenu;
+        // private EditInvDetailsMenu editInvDetailsMenu;
 
         public EditInvMenu(User user, StoreContext context, ILocationRepo locationRepo, IInventoryItemRepo inventoryItemRepo, IBookRepo bookRepo) {
             this.signedInUser = user;
@@ -45,6 +47,8 @@ namespace StoreUI.Menus.ManagerMenus
                 Console.WriteLine("[4] Back");
 
                 userInput = Console.ReadLine();
+                selectedLocationId = Int32.Parse(userInput);
+
                 switch(userInput) {
                     case "1":
                         EditInventory(1);
@@ -85,8 +89,7 @@ namespace StoreUI.Menus.ManagerMenus
             string input;
 
             do {
-
-                Console.WriteLine("Select an item to replenish: ");
+                Console.WriteLine("\nSelect an item to replenish: ");
 
                 List<InventoryItem> items = GetProductsForLocation(locationId);
                 foreach(InventoryItem item in items) {
@@ -98,33 +101,23 @@ namespace StoreUI.Menus.ManagerMenus
                 input = Console.ReadLine();
                 switch(input) {
                     case "1":
-                        selectedBook =  bookService.GetBookById(1);
-                        this.editInvDetailsMenu = new EditInvDetailsMenu(signedInUser, selectedBook, context, new DBRepo(context),new DBRepo(context), new DBRepo(context));
-                        editInvDetailsMenu.Start();
+                        ReplenishStock(1);
                         break;
 
                     case "2":
-                        selectedBook =  bookService.GetBookById(2);
-                        this.editInvDetailsMenu = new EditInvDetailsMenu(signedInUser, selectedBook, context, new DBRepo(context),new DBRepo(context), new DBRepo(context));
-                        editInvDetailsMenu.Start();
+                        ReplenishStock(2);
                         break;
 
                     case "3":
-                        selectedBook =  bookService.GetBookById(3);
-                        this.editInvDetailsMenu = new EditInvDetailsMenu(signedInUser, selectedBook, context, new DBRepo(context),new DBRepo(context), new DBRepo(context));
-                        editInvDetailsMenu.Start();
+                        ReplenishStock(3);
                         break;
 
                     case "4":
-                        selectedBook =  bookService.GetBookById(4);
-                        this.editInvDetailsMenu = new EditInvDetailsMenu(signedInUser, selectedBook, context, new DBRepo(context),new DBRepo(context), new DBRepo(context));
-                        editInvDetailsMenu.Start();
+                        ReplenishStock(4);            
                         break;
 
                     case "5":
-                        selectedBook =  bookService.GetBookById(5);
-                        this.editInvDetailsMenu = new EditInvDetailsMenu(signedInUser, selectedBook, context, new DBRepo(context),new DBRepo(context), new DBRepo(context));
-                        editInvDetailsMenu.Start();
+                        ReplenishStock(5);                     
                         break;
 
                     case "6":
@@ -140,7 +133,16 @@ namespace StoreUI.Menus.ManagerMenus
 
         }
 
+        public void ReplenishStock(int bookId) {
+            selectedItem = inventoryService.GetItemByLocationIdBookId(selectedLocationId, bookId);
+            Console.WriteLine("\nHow many would you like to add to the current stock?");
+            int amount = Int32.Parse(Console.ReadLine());
 
+            selectedItem.quantity = amount + selectedItem.quantity;
+            inventoryService.UpdateInventoryItem(selectedItem);
+
+            Console.WriteLine("Order submitted!");
+        }
 
     }
 }

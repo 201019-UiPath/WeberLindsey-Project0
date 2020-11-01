@@ -43,5 +43,10 @@ namespace StoreLib
         public void DeleteInventoryItem(InventoryItem inventoryItem) {
              repo.DeleteInventoryItem(inventoryItem);
          }
+
+         public InventoryItem GetItemByLocationIdBookId(int locationId, int bookId) {
+             InventoryItem item = repo.GetItemByLocationIdBookId(locationId, bookId);
+             return item;
+         }
     }
 }

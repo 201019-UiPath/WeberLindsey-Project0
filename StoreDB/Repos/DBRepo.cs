@@ -127,7 +127,9 @@ namespace StoreDB
             context.InventoryItems.Remove(inventory);
             context.SaveChanges();
         }
-
+        public InventoryItem GetItemByLocationIdBookId(int locationId, int bookId) {
+            return (InventoryItem) context.InventoryItems.Single(x => x.locationId == locationId && x.bookId == bookId);
+        }
 
         /// <summary>
         /// Methods to Add, Update, Get and Delete Cart data
@@ -247,7 +249,6 @@ namespace StoreDB
         public List<Order> GetAllOrdersByUserIdPriceDesc(int id) {
             return context.Orders.Where(x => x.userId == id).OrderByDescending(x => x.totalPrice).ToList();
         }
-
         public Order GetOrderByDate(DateTime dateTime) {
             return (Order) context.Orders.Single(x => x.orderDate == dateTime);
         }

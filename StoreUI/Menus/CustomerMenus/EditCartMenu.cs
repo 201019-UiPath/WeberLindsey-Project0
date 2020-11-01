@@ -68,12 +68,17 @@ namespace StoreUI.Menus.CustomerMenus
             userInput = Console.ReadLine();
             switch(userInput) {
                 case "1":
-                    RemoveItemFromCart();
+                    Console.WriteLine("Remove Item Selected");
+                    // RemoveItemFromCart();
                     break;
+
                 case "2":
+                    Console.WriteLine("Change Item Quantity Selected");
                     break;
+
                 case "3":
                     break;
+
                 default:
                     //TODO create input validation for this InvalidInputMessage()
                     Console.WriteLine("Invalid selection");

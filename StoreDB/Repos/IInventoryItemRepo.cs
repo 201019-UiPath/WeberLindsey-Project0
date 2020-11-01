@@ -12,5 +12,6 @@ namespace StoreDB.Repos
          InventoryItem GetInventoryItemByLocationId(int id);
          List<InventoryItem> GetAllInventoryItemsByLocationId(int id);
          void DeleteInventoryItem(InventoryItem inventoryItem);
+         InventoryItem GetItemByLocationIdBookId(int locationId, int bookId);
     }
 }
