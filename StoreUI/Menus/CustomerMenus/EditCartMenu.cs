@@ -40,9 +40,6 @@ namespace StoreUI.Menus.CustomerMenus
             this.bookService = new BookService(bookRepo);
             this.cartService = new CartService(cartRepo);
             this.cartItemService = new CartItemService(cartItemRepo);
-
-            // this.editCartMenu = new EditCartMenu(signedInUser, context, new DBRepo(context), new DBRepo(context), new DBRepo(context), new DBRepo(context));
-
         }
 
 
@@ -97,7 +94,7 @@ namespace StoreUI.Menus.CustomerMenus
                 List<CartItem> items = cartItemService.GetAllCartItemsByCartId(cart.id);
                 int i = 0;
                 foreach(CartItem item in items) {
-                    i++; //TODO test this
+                    i++; 
                     Book book = bookService.GetBookById(item.bookId);
                     Console.WriteLine($" [{i}] {book.title} | {book.author} | {book.price} | {item.quantity} ");
                 }

@@ -6,7 +6,7 @@ using StoreDB.Repos;
 using System.Collections.Generic;
 using StoreUI.Menus.CustomerMenus;
 using StoreUI.Menus.ManagerMenus;
-using System.Text.RegularExpressions;
+using Serilog;
 
 namespace StoreUI.Menus
 {
@@ -80,6 +80,12 @@ namespace StoreUI.Menus
         /// </summary>
         /// <returns></returns>
         public User SignIn() {
+            //Create sign in logger
+            Log.Logger = new LoggerConfiguration()
+            .MinimumLevel.Debug()
+            .WriteTo.File("../StoreDB/logs\\LoginAttempts.txt", rollingInterval: RollingInterval.Day)
+            .CreateLogger();
+
             string username;
             string password;
             User user = new User();
@@ -93,9 +99,13 @@ namespace StoreUI.Menus
             try {
                 user = userService.GetUserByUsername(username);
                 if(user.password != password) {
-                throw new System.ArgumentException();         
+                    throw new System.ArgumentException();         
                 } else {
                     signedInUser = user;
+
+                    //Log the sign in 
+                    Log.Information($"User {signedInUser.username} signed in successfully");
+
                     if(user.type == User.userType.Manager) {
                         managerMenu = new ManagerMenu(signedInUser, context, new DBRepo(context), new DBRepo(context));
                         managerMenu.Start();
@@ -119,8 +129,12 @@ namespace StoreUI.Menus
                     }
                 }
             } catch(ArgumentException) {
+                    //Log the sign in attempt
+                    Log.Information($"User {user.username} attempted to sign in unsuccessfully");
                     ValidationService.InvalidPassword();
             } catch(InvalidOperationException) {
+                    //Log the sign in attempt
+                    Log.Information($"A user has attempted to sign in to an account that does not exist using username: {username} ");
                     ValidationService.InvalidUsername();
             }
 
