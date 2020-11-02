@@ -12,6 +12,11 @@ namespace StoreLib
             Console.WriteLine("Invalid selection! Please choose a valid option.");
         }
 
+        //TODO use this to throw exceptions and have the console output in the catch instead of writeline in this class
+        // Exception InvalidInput = new Exception();
+        // Exception InvalidUsername = new Exception();
+        // Exception InvalidPassword = new Exception();
+
         public static void InvalidUsername() {
             Console.WriteLine("You have entered an incorrect username.");
             Console.WriteLine("Please verify your credentials and try again.");

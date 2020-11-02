@@ -111,7 +111,6 @@ namespace StoreUI.Menus.CustomerMenus
         /// Removes cart items once they are added to the order from the customer's cart
         /// </summary>
         public void CheckOut() {
-            //TODO add validation to ensure users are not purchasing more than what's available at a location
             //Get current user's cart and items
             Cart cart = cartService.GetCartByUserId(signedInUser.id);
             List<CartItem> items = cartItemService.GetAllCartItemsByCartId(cart.id);
@@ -143,9 +142,12 @@ namespace StoreUI.Menus.CustomerMenus
 
                 //Remove items from cart as line item is created
                 cartItemService.DeleteCartItem(item);
-            }
 
-            //TODO update location's inventory to reflect purchases have been made and stock removed
+                //Updates location's inventory to reflect purchases have been made and stock removed
+                InventoryItem itemInInv = inventoryService.GetItemByLocationIdBookId(signedInUser.locationId, book.id);
+                itemInInv.quantity -= item.quantity;
+                inventoryService.UpdateInventoryItem(itemInInv);
+            }
 
             //Update order's total price
             order.totalPrice = total;
