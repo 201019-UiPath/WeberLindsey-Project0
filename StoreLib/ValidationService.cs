@@ -1,5 +1,7 @@
 using System;
+using System.Collections.Generic;
 using System.Text.RegularExpressions;
+using StoreDB.Models;
 
 namespace StoreLib
 {
@@ -39,6 +41,16 @@ namespace StoreLib
             }
         }
 
+        public static Boolean ValidUsername(string username, List<User> users) {
+            foreach(User user in users) {
+                if(user.username == username) {
+                    Console.WriteLine("This username is already taken.");
+                    return false;
+                }                
+            }
+            return true;  
+        }
+
         // public static Boolean ValidPassword(string password) {
         //     if(Regex.IsMatch(password, "")) { //TODO edit this to check for letters numbers and spc char w/ at least 8 characters total
         //         Console.WriteLine("Password must include upper and lowercase letters, numbers and a special character.");
@@ -48,6 +60,16 @@ namespace StoreLib
         //         return true;
         //     }
         // }
+
+        public static Boolean InvalidQuantity(int locQuantity, int userQuantity) {
+            if(userQuantity > locQuantity) {
+                Console.WriteLine("Your current shopping location does not have that many of this item.");
+                Console.WriteLine($"Please select no more than {locQuantity}");
+                return false;
+            }
+
+            return true;
+        }
 
 
 

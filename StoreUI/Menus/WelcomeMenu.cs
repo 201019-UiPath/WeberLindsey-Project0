@@ -133,6 +133,7 @@ namespace StoreUI.Menus
         /// </summary>
         /// <returns></returns>
         public User GetNewUserDetails() {
+            List<User> users = userService.GetAllUsers();
             User user = new User();
             user.type = User.userType.Customer;
             string selectedLocation;
@@ -147,8 +148,10 @@ namespace StoreUI.Menus
                 user.email = Console.ReadLine();
             } while(ValidationService.ValidEmail(user.email) == false);
 
-            Console.WriteLine("Create a username: "); //TODO create function to check if username exists already
-            user.username = Console.ReadLine();
+            do {
+                Console.WriteLine("Create a username: ");
+                user.username = Console.ReadLine();
+            } while(ValidationService.ValidUsername(user.username, users) == false);
 
             Console.WriteLine("Create a password: ");
             user.password = Console.ReadLine();

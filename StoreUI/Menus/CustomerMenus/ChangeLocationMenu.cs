@@ -15,14 +15,22 @@ namespace StoreUI.Menus.CustomerMenus
         private UserService userService;
         private ILocationRepo locationRepo;
         private LocationService locationService;
+        private ICartRepo cartRepo;
+        private CartService cartService;
+        private ICartItemRepo cartItemRepo;
+        private CartItemService cartItemService;
  
-        public ChangeLocationMenu(User user, StoreContext context, IUserRepo userRepo, ILocationRepo locationRepo) {
+        public ChangeLocationMenu(User user, StoreContext context, IUserRepo userRepo, ILocationRepo locationRepo, ICartRepo cartRepo, ICartItemRepo cartItemRepo) {
             this.signedInUser = user;
             this.userRepo = userRepo;
             this.locationRepo = locationRepo;
+            this.cartRepo = cartRepo;
+            this.cartItemRepo = cartItemRepo;
 
             this.userService = new UserService(userRepo);
             this.locationService = new LocationService(locationRepo);
+            this.cartService = new CartService(cartRepo);
+            this.cartItemService = new CartItemService(cartItemRepo);
         }
 
         /// <summary>
@@ -74,8 +82,16 @@ namespace StoreUI.Menus.CustomerMenus
             signedInUser.locationId = id;
             userService.UpdateUser(signedInUser);
 
+            //Removes user's cart as they can only purchase from one location at a time
+            //And creates new cart for them
+            Cart cart = cartService.GetCartByUserId(signedInUser.id);
+            cartService.DeleteCart(cart);
+
+            Cart newCart = new Cart();
+            newCart.userId = signedInUser.id;
+            cartService.AddCart(newCart);
+
             Console.WriteLine("Location updated!\n");
-            //TODO empty user's cart items as inventory has changed
         }
 
     }

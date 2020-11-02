@@ -10,6 +10,7 @@ namespace StoreUI.Menus.CustomerMenus
     {
         private string userInput;
         private User signedInUser;
+        private int invQuantity;
         private Book book;
         private IUserRepo userRepo;
         private UserService userService;
@@ -45,10 +46,12 @@ namespace StoreUI.Menus.CustomerMenus
         public void Start() {
 
             do {
+                InventoryItem selectedItem = inventoryService.GetItemByLocationIdBookId(signedInUser.locationId, book.id);
+                invQuantity = selectedItem.quantity;
+
                 Console.WriteLine("\nWhat would you like to do? ");
 
-                //TODO add way to get the quantity from InventoryItemRepo Or not
-                Console.WriteLine($" [{book.id}] {book.title} | {book.author} | {book.price} | Quantity:  ");
+                Console.WriteLine($" [{book.id}] {book.title} | {book.author} | {book.price} | Quantity: {invQuantity} ");
                 Console.WriteLine($" {book.synopsis} \n");
 
                 Console.WriteLine("[1] Add to cart");
@@ -58,8 +61,12 @@ namespace StoreUI.Menus.CustomerMenus
 
                 switch(userInput) {
                     case "1":
-                        Console.WriteLine("How many would you like? ");
-                        int quantity = Int32.Parse(Console.ReadLine());
+                        int quantity;
+
+                        do{
+                            Console.WriteLine("How many would you like? ");
+                            quantity = Int32.Parse(Console.ReadLine());
+                        } while(ValidationService.InvalidQuantity(invQuantity, quantity) == false);
 
                         CartItem item = new CartItem();
                         Cart userCart = cartService.GetCartByUserId(signedInUser.id);

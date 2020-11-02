@@ -66,24 +66,30 @@ namespace StoreUI.Menus.ManagerMenus
         }
 
 
-        //TODO Add input validation to this for email/pw/username requirements
         /// <summary>
         /// Obtain user input to create new Manager User account
         /// </summary>
         /// <returns></returns>
         public User GetNewManagerDetails() {
+            List<User> users = userService.GetAllUsers();
             User user = new User();
             user.type = User.userType.Manager;
             string selectedLocation;
 
-            Console.WriteLine("\nEnter name: ");
-            user.name = Console.ReadLine();
+            do {
+                Console.WriteLine("\nEnter name: ");
+                user.name = Console.ReadLine();
+            } while(ValidationService.ValidName(user.name) == false);
+            
+            do {
+                Console.WriteLine("Enter email: ");
+                user.email = Console.ReadLine();
+            } while(ValidationService.ValidEmail(user.email) == false);
 
-            Console.WriteLine("Enter email: ");
-            user.email = Console.ReadLine();
-
-            Console.WriteLine("Create a username: ");
-            user.username = Console.ReadLine();
+            do {
+                Console.WriteLine("Create a username: ");
+                user.username = Console.ReadLine();
+            } while(ValidationService.ValidUsername(user.username, users) == false);
 
             Console.WriteLine("Create a password: ");
             user.password = Console.ReadLine();

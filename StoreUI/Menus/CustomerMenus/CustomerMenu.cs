@@ -25,7 +25,7 @@ namespace StoreUI.Menus.CustomerMenus
 
             this.orderHistoryMenu = new OrderHistoryMenu(signedInUser, context, new DBRepo(context),new DBRepo(context), new DBRepo(context), new DBRepo(context), new DBRepo(context), new DBRepo(context));
 
-            this.changeLocationMenu = new ChangeLocationMenu(signedInUser, context, new DBRepo(context),new DBRepo(context));
+            this.changeLocationMenu = new ChangeLocationMenu(signedInUser, context, new DBRepo(context),new DBRepo(context), new DBRepo(context),new DBRepo(context));
 
             this.cartMenu = new CartMenu(signedInUser, context, new DBRepo(context),new DBRepo(context), new DBRepo(context), new DBRepo(context), new DBRepo(context), new DBRepo(context), new DBRepo(context), new DBRepo(context));
         }
