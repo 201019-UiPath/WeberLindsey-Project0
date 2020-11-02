@@ -21,7 +21,6 @@ namespace StoreUI.Menus.ManagerMenus
         private InventoryService inventoryService;
         private IBookRepo bookRepo;
         private BookService bookService;
-        // private EditInvDetailsMenu editInvDetailsMenu;
 
         public EditInvMenu(User user, StoreContext context, ILocationRepo locationRepo, IInventoryItemRepo inventoryItemRepo, IBookRepo bookRepo) {
             this.signedInUser = user;
@@ -66,8 +65,7 @@ namespace StoreUI.Menus.ManagerMenus
                         break;
 
                     default:
-                        //TODO create input validation for this InvalidInputMessage()
-                        Console.WriteLine("Invalid selection");
+                        ValidationService.InvalidInput();
                         break;
                 }
 
@@ -124,8 +122,7 @@ namespace StoreUI.Menus.ManagerMenus
                         break;
 
                     default:
-                        //TODO create input validation for this InvalidInputMessage()
-                        Console.WriteLine("Invalid selection");
+                        ValidationService.InvalidInput();
                         break;
                 }
 

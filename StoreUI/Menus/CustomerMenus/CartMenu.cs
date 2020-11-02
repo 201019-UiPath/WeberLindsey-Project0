@@ -98,8 +98,7 @@ namespace StoreUI.Menus.CustomerMenus
                         break;
 
                     default:
-                        //TODO create input validation for this InvalidInputMessage()
-                        Console.WriteLine("Invalid selection");
+                        ValidationService.InvalidInput();
                         break;
                 }
                         
@@ -112,6 +111,7 @@ namespace StoreUI.Menus.CustomerMenus
         /// Removes cart items once they are added to the order from the customer's cart
         /// </summary>
         public void CheckOut() {
+            //TODO add validation to ensure users are not purchasing more than what's available at a location
             //Get current user's cart and items
             Cart cart = cartService.GetCartByUserId(signedInUser.id);
             List<CartItem> items = cartItemService.GetAllCartItemsByCartId(cart.id);
@@ -144,6 +144,8 @@ namespace StoreUI.Menus.CustomerMenus
                 //Remove items from cart as line item is created
                 cartItemService.DeleteCartItem(item);
             }
+
+            //TODO update location's inventory to reflect purchases have been made and stock removed
 
             //Update order's total price
             order.totalPrice = total;

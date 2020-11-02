@@ -59,8 +59,7 @@ namespace StoreUI.Menus.CustomerMenus
                     case "4":
                         break;
                     default:
-                        //TODO create input validation for this InvalidInputMessage()
-                        Console.WriteLine("Invalid selection");
+                        ValidationService.InvalidInput();
                         break;
                 }
             } while(!userInput.Equals("4"));

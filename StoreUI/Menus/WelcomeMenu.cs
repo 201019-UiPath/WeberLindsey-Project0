@@ -6,6 +6,7 @@ using StoreDB.Repos;
 using System.Collections.Generic;
 using StoreUI.Menus.CustomerMenus;
 using StoreUI.Menus.ManagerMenus;
+using System.Text.RegularExpressions;
 
 namespace StoreUI.Menus
 {
@@ -66,8 +67,7 @@ namespace StoreUI.Menus
                         break;
 
                     default:
-                        //TODO create input validation for this InvalidInputMessage()
-                        Console.WriteLine("Invalid selection");
+                        ValidationService.InvalidInput();
                         break;
                 }
 
@@ -115,24 +115,19 @@ namespace StoreUI.Menus
                             cartService.AddCart(newCart);
 
                             customerMenu.Start();
-                        }
-
-                        
+                        }                        
                     }
                 }
             } catch(ArgumentException) {
-                //TODO change this to validation function
-                    Console.WriteLine("\nYou have entered an invalid password");
+                    ValidationService.InvalidPassword();
             } catch(InvalidOperationException) {
-                //TODO change this to validation function and create custom exception
-                    Console.WriteLine("\nYou have entered an invalid username");
+                    ValidationService.InvalidUsername();
             }
 
             return user;
         }
 
 
-        //TODO Add input validation to this for email/pw/username requirements
         /// <summary>
         /// Obtain user input to create new User account
         /// </summary>
@@ -142,13 +137,17 @@ namespace StoreUI.Menus
             user.type = User.userType.Customer;
             string selectedLocation;
 
+            do {
             Console.WriteLine("\nEnter name: ");
             user.name = Console.ReadLine();
+            } while(ValidationService.ValidName(user.name) == false);
 
-            Console.WriteLine("Enter email: ");
-            user.email = Console.ReadLine();
+            do {
+                Console.WriteLine("Enter email: ");
+                user.email = Console.ReadLine();
+            } while(ValidationService.ValidEmail(user.email) == false);
 
-            Console.WriteLine("Create a username: ");
+            Console.WriteLine("Create a username: "); //TODO create function to check if username exists already
             user.username = Console.ReadLine();
 
             Console.WriteLine("Create a password: ");
@@ -180,8 +179,7 @@ namespace StoreUI.Menus
                         break;
                     
                     default:
-                        //TODO change this to InvalidInputMessage()
-                        Console.WriteLine("Invalid Selection\n");
+                        ValidationService.InvalidInput();
                         break;
                 } 
             } while (invalidSelection);

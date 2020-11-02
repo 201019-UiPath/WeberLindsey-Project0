@@ -80,8 +80,7 @@ namespace StoreUI.Menus.CustomerMenus
                     break;
 
                 default:
-                    //TODO create input validation for this InvalidInputMessage()
-                    Console.WriteLine("Invalid selection");
+                    ValidationService.InvalidInput();
                     break;
             }
         }
@@ -118,8 +117,7 @@ namespace StoreUI.Menus.CustomerMenus
                     case "6":
                         break;
                     default:
-                        //TODO create input validation for this InvalidInputMessage()
-                        Console.WriteLine("Invalid selection");
+                        ValidationService.InvalidInput();
                         break;
                 }
 
@@ -158,8 +156,7 @@ namespace StoreUI.Menus.CustomerMenus
                     case "6":
                         break;
                     default:
-                        //TODO create input validation for this InvalidInputMessage()
-                        Console.WriteLine("Invalid selection");
+                        ValidationService.InvalidInput();
                         break;
                 }
 

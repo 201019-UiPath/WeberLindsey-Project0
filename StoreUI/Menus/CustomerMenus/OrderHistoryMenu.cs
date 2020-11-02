@@ -78,8 +78,7 @@ namespace StoreUI.Menus.CustomerMenus
                         break;
 
                     default:
-                        //TODO create input validation for this InvalidInputMessage()
-                        Console.WriteLine("Invalid selection");
+                        ValidationService.InvalidInput();
                         break;
                 }
 

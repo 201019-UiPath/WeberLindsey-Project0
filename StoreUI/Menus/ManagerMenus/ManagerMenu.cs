@@ -57,8 +57,7 @@ namespace StoreUI.Menus.ManagerMenus
                         Environment.Exit(0);
                         break;
                     default:
-                        //TODO create input validation for this InvalidInputMessage()
-                        Console.WriteLine("Invalid selection");
+                        ValidationService.InvalidInput();
                         break;
                 }
 
@@ -115,8 +114,7 @@ namespace StoreUI.Menus.ManagerMenus
                         break;
                     
                     default:
-                        //TODO change this to InvalidInputMessage()
-                        Console.WriteLine("Invalid Selection\n");
+                        ValidationService.InvalidInput();
                         break;
                 } 
             } while (invalidSelection);

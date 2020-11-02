@@ -61,13 +61,6 @@ namespace StoreUI.Menus.CustomerMenus
                         Console.WriteLine("How many would you like? ");
                         int quantity = Int32.Parse(Console.ReadLine());
 
-                        //TODO remove this, only for testing cart functionality, deleting cart
-                        // cartService.DeleteCart(cartService.GetCartByUserId(signedInUser.id));
-
-                        // Cart newCart = new Cart();
-                        // newCart.userId = signedInUser.id;
-                        // cartService.AddCart(newCart);
-
                         CartItem item = new CartItem();
                         Cart userCart = cartService.GetCartByUserId(signedInUser.id);
                         item.cartId = userCart.id;
@@ -81,8 +74,7 @@ namespace StoreUI.Menus.CustomerMenus
                         break;
 
                     default:
-                        //TODO create input validation for this InvalidInputMessage()
-                        Console.WriteLine("Invalid Selection");
+                        ValidationService.InvalidInput();
                         break;
                 }
             } while(!userInput.Equals("2"));

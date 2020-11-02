@@ -1,6 +1,7 @@
 using System;
 using StoreDB;
 using StoreDB.Models;
+using StoreLib;
 
 namespace StoreUI.Menus.CustomerMenus
 {
@@ -70,8 +71,7 @@ namespace StoreUI.Menus.CustomerMenus
                         break;
 
                     default:
-                        //TODO create input validation for this InvalidInputMessage()
-                        Console.WriteLine("Invalid selection");
+                        ValidationService.InvalidInput();
                         break;
                 }
 
