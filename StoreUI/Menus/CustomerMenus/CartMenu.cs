@@ -125,6 +125,9 @@ namespace StoreUI.Menus.CustomerMenus
 
             Order createdOrder = orderService.GetOrderByDate(orderDate);
 
+            Console.WriteLine("\nYour order has been placed!");
+            Console.WriteLine("Receipt:");
+
             //Create line items and gather total price for order
             foreach(CartItem item in items) {
                 Book book = bookService.GetBookById(item.bookId);
@@ -147,14 +150,17 @@ namespace StoreUI.Menus.CustomerMenus
                 InventoryItem itemInInv = inventoryService.GetItemByLocationIdBookId(signedInUser.locationId, book.id);
                 itemInInv.quantity -= item.quantity;
                 inventoryService.UpdateInventoryItem(itemInInv);
+
+                Console.WriteLine($"Item: {book.title} {book.author} {book.price} {lineItem.quantity}");
             }
 
             //Update order's total price
             order.totalPrice = total;
             orderService.UpdateOrder(createdOrder);
 
-            Console.WriteLine("Your order has been placed!");
+            Console.WriteLine($"Your total: {order.totalPrice}");
             Console.WriteLine("Thank you for purchasing from CF Books!");
+            
         } 
 
     }
