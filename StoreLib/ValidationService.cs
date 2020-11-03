@@ -76,8 +76,6 @@ namespace StoreLib
             return true;
         }
 
-
-
     }
 }
 

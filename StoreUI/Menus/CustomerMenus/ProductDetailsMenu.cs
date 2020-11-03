@@ -49,6 +49,8 @@ namespace StoreUI.Menus.CustomerMenus
                 InventoryItem selectedItem = inventoryService.GetItemByLocationIdBookId(signedInUser.locationId, book.id);
                 invQuantity = selectedItem.quantity;
 
+                //TODO add some code here & the add to cart function to also subtract any existing cart quantity for that same item from the inv available amount so customers cant purchase more than what's available
+
                 Console.WriteLine("\nWhat would you like to do? ");
 
                 Console.WriteLine($" [{book.id}] {book.title} | {book.author} | {book.price} | Quantity: {invQuantity} ");
