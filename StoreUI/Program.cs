@@ -1,5 +1,6 @@
 ﻿using StoreUI.Menus;
 using StoreDB;
+using Serilog;
 
 namespace StoreUI
 {
@@ -14,3 +15,5 @@ namespace StoreUI
         }
     }
 }
+
+

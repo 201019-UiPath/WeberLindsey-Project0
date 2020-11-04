@@ -47,6 +47,7 @@ namespace StoreUI.Menus.CustomerMenus
         /// </summary>
         public void Start() {
             do {
+                //TODO add ability to view order history by locations (select a location before the orders are displayed)
 
                 Console.WriteLine("How would you like to view your previous orders? ");
 

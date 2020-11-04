@@ -83,7 +83,7 @@ namespace StoreUI.Menus
             //Create sign in logger
             Log.Logger = new LoggerConfiguration()
             .MinimumLevel.Debug()
-            .WriteTo.File("../StoreDB/logs\\LoginAttempts.txt", rollingInterval: RollingInterval.Day)
+            .WriteTo.File("logs\\LoginAttempts.txt")
             .CreateLogger();
 
             string username;
